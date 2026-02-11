@@ -6,7 +6,8 @@
 * Descripción:	Contadores binarios de 4 bits controlados por
 *				botones de incremento y decremento. Incluye
 *				función de sumar ambos contadores y un led
-*				para indicar carry de suma.
+*				para indicar carry de suma. Oscilador 
+*				configurado a 1MHz
 */
 /****************************************/
 // Encabezado 
@@ -16,6 +17,12 @@
 
 .cseg
 .org 0x0000
+
+// oscilador a 1MHz
+LDI		R16, 0x80      // (1<<CLKPCE) cambiar oscilador
+STS		CLKPR, R16
+LDI		R16, 0x04      // (1<<CLKPS2) = ÷16 por 16MHz de fábrica
+STS		CLKPR, R16
 
  /****************************************/
 // Configuración de la pila
