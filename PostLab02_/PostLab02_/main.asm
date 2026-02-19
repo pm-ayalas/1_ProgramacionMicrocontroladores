@@ -120,6 +120,9 @@ SETUP:
 	LDI		R16, 0b00000010
 	STS		BTN_dec_uE, R16
 
+	// alarma apagada
+	LDI		R20, 0b01111111
+
 	// habilitar interrupciones
 	SEI	
     
@@ -188,10 +191,12 @@ REVISAR_ALARMA:
 
 	LDI		R16, 0x00
 	STS		C_LEDs, R16
+	STS		C_segundos, R16
 	OUT		PORTB, R16				// reiniciar leds
 
+	// ALARMA
 	LDI		R16, 0b11111111
-	CPSE	R20, R16				// son iguales?
+	CPSE	R20, R16				// compara, y salta si son iguales
 	RJMP	Registro_FF
 
 	LDI		R20, 0b01111111
@@ -248,7 +253,23 @@ MOSTRAR_DISPLAY:
 	ADC		ZH, R17
 	LPM		R16, Z
 
-	AND		R16, R20
+	// logica alarma ****
+
+	LDI		R18, 0b01111111
+	CPSE	R20, R18
+	RJMP	Alarma_encendida
+
+	ANDI	R16, 0b01111111
+	RJMP	FIN_LOGICA_ALARMA
+
+Alarma_encendida:
+	ORI		R16, 0b10000000
+
+
+	// *** //
+
+FIN_LOGICA_ALARMA:
+
 	OUT		PORTD, R16			// mostrar en leds
 
 	POP		ZH
