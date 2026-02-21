@@ -6,7 +6,12 @@
 * Autor : Paula Ayala
 * Descripción:	Contador binario de 4 bits con incremento
 *				y decremento mediante botones con 
-*				interrupciones on-change y pull-us internos.			
+*				interrupciones on-change y pull-us internos.
+*				Contador hexadecimal de unidades y decenas, 
+*				utiliza interrupciones del TIMER0 de 20ms,
+*				cambia combinación de segmentos del display 
+*				cada 1 segundo. Ambos contadores funcionan
+*				al mismo tiempo.		
 */
 
 /****************************************/
@@ -22,11 +27,16 @@
 .dseg
 .org    SRAM_START
 
-C_LEDS:		.BYTE 1				// Contador LEDs
-C_Display:	.BYTE 1				// Contador Display
-C_Segundos:	.BYTE 1				// Contador para las 50 interrupciones
-BTN_inc:	.BYTE 1				// Bandera btn incremento
-BTN_dec:	.BYTE 1				// Bandera btn decremento
+C_LEDS:				.BYTE 1				// Contador LEDs
+
+C_Display1:			.BYTE 1				// Contador Display unidades
+C_Display2:			.BYTE 1				// Contador Display unidades
+
+Display_Actual:		.BYTE 1				// Variable para ubicar el display mostrado
+
+C_Segundos:			.BYTE 1				// Contador para las 50 interrupciones
+BTN_inc:			.BYTE 1				// Bandera btn incremento
+BTN_dec:			.BYTE 1				// Bandera btn decremento
 
 // ====================== //
 // FALSH
@@ -80,7 +90,7 @@ SETUP:
 	LDI		R16, 0b01111111
 	OUT		PORTD, R16
 	LDI		R16, 0x00
-	STS		C_Display, R16		// valor inicial 00
+	STS		C_Display1, R16		// valor inicial 00
 	CALL	Mostrar_Display
 
 	// Pines para Multiplexar Displays
@@ -112,6 +122,9 @@ SETUP:
 	STS		BTN_inc, R16
 	STS		BTN_dec, R16
 
+	LDI		R16, 0
+	STS		Display_Actual, R16
+	
 	// habilitar interrupciones
 	SEI
 
@@ -119,6 +132,21 @@ SETUP:
 // Loop Infinito
 MAIN_LOOP:
 	
+	//Mostrar display correspondiente
+	LDS		R16, Display_Actual
+	CPI		R16, 1
+	BREQ	UNIDADES
+
+	SBI		PORTC, PC2
+	CBI		PORTC, PC3
+	RJMP	FIN_SELECTOR
+
+UNIDADES:
+	SBI		PORTC, PC3
+	CBI		PORTC, PC2
+
+FIN_SELECTOR:
+
 	// Contador de 1 seg
 	LDS		R16, C_Segundos
 	CPI		R16, 50
@@ -128,10 +156,10 @@ MAIN_LOOP:
 	STS		C_Segundos, R16					// Reiniciamos contador segundos
 
 	// Incremento Display
-	LDS		R16, C_Display
+	LDS		R16, C_Display1
 	INC		R16								// incremento contador
 	ANDI	R16, 0b00001111					// mantener margen
-	STS		C_Display, R16		
+	STS		C_Display1, R16		
 	CALL	Mostrar_Display					// mostrar valores en proto
 
 LECTURA_BTNS:
@@ -199,9 +227,9 @@ Mostrar_Display:
 	PUSH	ZL
 	PUSH	ZH
 
-	LDS		R16, C_Display
+	LDS		R16, C_Display1
 
-	// Apuntar a tabla de segmentos según C_Display
+	// Apuntar a tabla de segmentos según C_Display1
 	LSL		R16		// mult por 2 porque dw ocupa 2 bytes
 	LDI		ZL, LOW(VECTOR*2)
 	LDI		ZH, HIGH(VECTOR*2)
@@ -224,6 +252,7 @@ Mostrar_Display:
 TIM0_ISR:
 
 	PUSH	R16
+	PUSH	R17
 	IN		R16, SREG
 	PUSH	R16
 
@@ -231,9 +260,18 @@ TIM0_ISR:
 	LDS		R16, C_Segundos
 	INC		R16
 	STS		C_Segundos, R16
+	STS		C_Segundos, R16
+
+	// modificar Display actual 
+	// XOR (Exclusive OR) || 1 Diferentes, 0 Iguales
+	LDS		R16, Display_Actual
+	LDI		R17, 1
+	EOR		R16, R17
+	STS		Display_Actual, R16
 
 	POP		R16
 	OUT		SREG, R16
+	POP		R17
 	POP		R16
 
 	RETI
@@ -287,9 +325,9 @@ VECTOR:
     .dw 0x65    // 7
     .dw 0x00    // 8
     .dw 0x05    // 9
-    .dw 0x01    // A
-    .dw 0x18    // b
-    .dw 0x4A    // C
-    .dw 0x30    // d
-    .dw 0x0A    // E
-    .dw 0x0B    // F
+//    .dw 0x01    // A
+//    .dw 0x18    // b
+//    .dw 0x4A    // C
+//    .dw 0x30    // d
+//    .dw 0x0A    // E
+//    .dw 0x0B    // F
