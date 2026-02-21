@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab02_\PostLab02_\main.asm Thu Feb 19 11:07:14 2026
+AVRASM ver. 2.2.8  C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab02_\PostLab02_\main.asm Thu Feb 19 14:18:56 2026
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab02_\PostLab02_\main.asm(17): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1146,7 +1146,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
 00004b 9300 0104                 	STS		BTN_dec, R16
                                  
                                  	// Estado inicial de btns
-00004d e001                      	LDI		R16, 0b00000001
+00004d e004                      	LDI		R16, 0b00000100
 00004e 9300 0105                 	STS		BTN_inc_uE, R16
 000050 e002                      	LDI		R16, 0b00000010
 000051 9300 0106                 	STS		BTN_dec_uE, R16

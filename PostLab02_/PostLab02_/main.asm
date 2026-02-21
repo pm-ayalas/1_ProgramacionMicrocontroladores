@@ -115,7 +115,7 @@ SETUP:
 	STS		BTN_dec, R16
 
 	// Estado inicial de btns
-	LDI		R16, 0b00000001
+	LDI		R16, 0b00000100
 	STS		BTN_inc_uE, R16
 	LDI		R16, 0b00000010
 	STS		BTN_dec_uE, R16
