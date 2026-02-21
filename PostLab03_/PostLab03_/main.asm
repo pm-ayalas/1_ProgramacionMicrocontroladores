@@ -34,7 +34,7 @@ C_Display2:			.BYTE 1				// Contador Display unidades
 
 Display_Actual:		.BYTE 1				// Variable para ubicar el display mostrado
 
-C_Segundos:			.BYTE 1				// Contador para las 50 interrupciones
+C_Segundos:			.BYTE 1				// Contador para las 100 interrupciones
 BTN_inc:			.BYTE 1				// Bandera btn incremento
 BTN_dec:			.BYTE 1				// Bandera btn decremento
 
@@ -149,7 +149,7 @@ FIN_SELECTOR:
 
 	// Contador de 1 seg
 	LDS		R16, C_Segundos
-	CPI		R16, 50
+	CPI		R16, 100
 	BRNE	LECTURA_BTNS					// No ha llegado a 1s, entonces leemos banderas btns
 	
 	LDI		R16, 0x00
@@ -205,10 +205,10 @@ IN_TIMER0:
 	OUT		TCCR0A, R16
 
 	// Prescaler 1024
-	LDI		R16, (1 << CS02) | (0 << CS01) | (0 << CS00)  
+	LDI		R16, (0 << CS02) | (1 << CS01) | (1 << CS00)  
 	OUT		TCCR0B, R16
 	
-	LDI		R16, 78							// R: 78.125
+	LDI		R16, 156							// R: 156.25
 	OUT		OCR0A, R16
 
 	// habilitar interrupciones por comparacion

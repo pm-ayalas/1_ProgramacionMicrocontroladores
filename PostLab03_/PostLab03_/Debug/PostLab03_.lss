@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm Sat Feb 21 14:11:48 2026
+AVRASM ver. 2.2.8  C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm Sat Feb 21 14:20:14 2026
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm(22): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -1065,7 +1065,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
                                  
 000103                           Display_Actual:		.BYTE 1				// Variable para ubicar el display mostrado
                                  
-000104                           C_Segundos:			.BYTE 1				// Contador para las 50 interrupciones
+000104                           C_Segundos:			.BYTE 1				// Contador para las 100 interrupciones
 000105                           BTN_inc:			.BYTE 1				// Bandera btn incremento
 000106                           BTN_dec:			.BYTE 1				// Bandera btn decremento
                                  
@@ -1180,7 +1180,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
                                  
                                  	// Contador de 1 seg
 00005a 9100 0104                 	LDS		R16, C_Segundos
-00005c 3302                      	CPI		R16, 50
+00005c 3604                      	CPI		R16, 100
 00005d f459                      	BRNE	LECTURA_BTNS					// No ha llegado a 1s, entonces leemos banderas btns
                                  	
 00005e e000                      	LDI		R16, 0x00
@@ -1236,10 +1236,10 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
 000087 bd04                      	OUT		TCCR0A, R16
                                  
                                  	// Prescaler 1024
-000088 e004                      	LDI		R16, (1 << CS02) | (0 << CS01) | (0 << CS00)  
+000088 e003                      	LDI		R16, (0 << CS02) | (1 << CS01) | (1 << CS00)  
 000089 bd05                      	OUT		TCCR0B, R16
                                  	
-00008a e40e                      	LDI		R16, 78							// R: 78.125
+00008a e90c                      	LDI		R16, 156							// R: 156.25
 00008b bd07                      	OUT		OCR0A, R16
                                  
                                  	// habilitar interrupciones por comparacion
