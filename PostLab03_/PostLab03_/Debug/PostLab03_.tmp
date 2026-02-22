@@ -31,20 +31,23 @@
   <BTN_inc><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>38</LINE></BTN_inc>
   <BTN_dec><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>39</LINE></BTN_dec>
   <PILA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>58</LINE></PILA>
-  <BTN_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>280</LINE></BTN_ISR>
-  <TIM0_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>252</LINE></TIM0_ISR>
+  <BTN_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>316</LINE></BTN_ISR>
+  <TIM0_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>289</LINE></TIM0_ISR>
   <SETUP><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>65</LINE></SETUP>
-  <Mostrar_Display><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>224</LINE></Mostrar_Display>
-  <IN_TIMER0><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>202</LINE></IN_TIMER0>
+  <Mostrar_Display><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>248</LINE></Mostrar_Display>
+  <IN_TIMER0><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>226</LINE></IN_TIMER0>
   <MAIN_LOOP><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>133</LINE></MAIN_LOOP>
   <UNIDADES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>144</LINE></UNIDADES>
   <FIN_SELECTOR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>148</LINE></FIN_SELECTOR>
-  <LECTURA_BTNS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>165</LINE></LECTURA_BTNS>
-  <LECTURA_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>181</LINE></LECTURA_DEC>
-  <VECTOR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>317</LINE></VECTOR>
-  <INCREMENTAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>293</LINE></INCREMENTAR>
-  <REVISAR_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>297</LINE></REVISAR_DEC>
-  <DECREMENTAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>302</LINE></DECREMENTAR>
-  <FIN1_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>306</LINE></FIN1_ISR>
+  <LECTURA_BTNS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>189</LINE></LECTURA_BTNS>
+  <CONTINUAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>180</LINE></CONTINUAR>
+  <LECTURA_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>205</LINE></LECTURA_DEC>
+  <MOSTRAR_UNIDADES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>264</LINE></MOSTRAR_UNIDADES>
+  <FIN_SELECTORR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>267</LINE></FIN_SELECTORR>
+  <VECTOR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>353</LINE></VECTOR>
+  <INCREMENTAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>329</LINE></INCREMENTAR>
+  <REVISAR_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>333</LINE></REVISAR_DEC>
+  <DECREMENTAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>338</LINE></DECREMENTAR>
+  <FIN1_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm</FILE><LINE>342</LINE></FIN1_ISR>
  </LABELS>
 </ASSEMBLER_INFO>

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm Sat Feb 21 14:20:14 2026
+AVRASM ver. 2.2.8  C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm Sat Feb 21 14:57:22 2026
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLab03_\PostLab03_\main.asm(22): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc'
@@ -996,7 +996,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
                                  *				y decremento mediante botones con 
                                  *				interrupciones on-change y pull-us internos.
                                  *				Contador hexadecimal de unidades y decenas, 
-                                 *				utiliza interrupciones del TIMER0 de 20ms,
+                                 *				utiliza interrupciones del TIMER0 de 10ms,
                                  *				cambia combinación de segmentos del display 
                                  *				cada 1 segundo. Ambos contadores funcionan
                                  *				al mismo tiempo.		
@@ -1061,7 +1061,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
 000100                           C_LEDS:				.BYTE 1				// Contador LEDs
                                  
 000101                           C_Display1:			.BYTE 1				// Contador Display unidades
-000102                           C_Display2:			.BYTE 1				// Contador Display unidades
+000102                           C_Display2:			.BYTE 1				// Contador Display decenas
                                  
 000103                           Display_Actual:		.BYTE 1				// Variable para ubicar el display mostrado
                                  
@@ -1080,9 +1080,9 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
                                  // ====================== //
 000000 940c 001e                 JMP		PILA
                                  .ORG	0x0008					// Dirección vector PCINT1
-000008 940c 00bb                 JMP		BTN_ISR
+000008 940c 00cc                 JMP		BTN_ISR
                                  .ORG	0x001C					// Dirección OC0Aaddr	
-00001c 940c 00a5                 JMP		TIM0_ISR			
+00001c 940c 00b8                 JMP		TIM0_ISR			
                                  
                                   /****************************************/
                                  // Configuración de la pila
@@ -1122,7 +1122,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
 000032 b90b                      	OUT		PORTD, R16
 000033 e000                      	LDI		R16, 0x00
 000034 9300 0101                 	STS		C_Display1, R16		// valor inicial 00
-000036 940e 0092                 	CALL	Mostrar_Display
+000036 940e 009e                 	CALL	Mostrar_Display
                                  
                                  	// Pines para Multiplexar Displays
                                  	// PuertoC entrada para botones
@@ -1144,7 +1144,7 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
 000040 9300 006c                 	STS		PCMSK1, R16
                                  
                                  	// INICIALIZAR TIMER0 ====== //
-000042 940e 0086                 	CALL	IN_TIMER0
+000042 940e 0092                 	CALL	IN_TIMER0
                                  
                                  	// INICIALIZAR VARIABLES ====== //
 000044 e000                      	LDI		R16, 0x00
@@ -1177,185 +1177,221 @@ C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\PostLa
 000059 9842                      	CBI		PORTC, PC2
                                  
                                  FIN_SELECTOR:
+00005a 940e 009e                 	CALL	Mostrar_Display
                                  
                                  	// Contador de 1 seg
-00005a 9100 0104                 	LDS		R16, C_Segundos
-00005c 3604                      	CPI		R16, 100
-00005d f459                      	BRNE	LECTURA_BTNS					// No ha llegado a 1s, entonces leemos banderas btns
+00005c 9100 0104                 	LDS		R16, C_Segundos
+00005e 3604                      	CPI		R16, 100
+00005f f4a9                      	BRNE	LECTURA_BTNS					// No ha llegado a 1s, entonces leemos banderas btns
                                  	
-00005e e000                      	LDI		R16, 0x00
-00005f 9300 0104                 	STS		C_Segundos, R16					// Reiniciamos contador segundos
+000060 e000                      	LDI		R16, 0x00
+000061 9300 0104                 	STS		C_Segundos, R16					// Reiniciamos contador segundos
+                                 
+                                 // ==================================== //
+                                 // LOGICA CONTEO DE SEGUNDOS
+                                 // ==================================== //
                                  
                                  	// Incremento Display
-000061 9100 0101                 	LDS		R16, C_Display1
-000063 9503                      	INC		R16								// incremento contador
-000064 700f                      	ANDI	R16, 0b00001111					// mantener margen
-000065 9300 0101                 	STS		C_Display1, R16		
-000067 940e 0092                 	CALL	Mostrar_Display					// mostrar valores en proto
+000063 9100 0101                 	LDS		R16, C_Display1
+000065 9110 0102                 	LDS		R17, C_Display2
+                                 
+000067 9503                      	INC		R16								// incremento contador
+                                 
+000068 300a                      	CPI		R16, 10							// unidades llegó a 10?
+000069 f429                      	BRNE	CONTINUAR
+                                 
+00006a e000                      	LDI		R16, 0							// reiniciamos display1					
+00006b 9513                      	INC		R17								// incrementamos display2
+                                 
+00006c 3016                      	CPI		R17, 6							// decenas llegó a 10?
+00006d f409                      	BRNE	CONTINUAR
+                                 
+00006e e010                      	LDI		R17, 0							// reiniciamos display2
+                                 
+                                 CONTINUAR:
+                                 
+00006f 9300 0101                 	STS		C_Display1, R16					// actualizar contadores de displays
+000071 9310 0102                 	STS		C_Display2, R17
+                                 	
+000073 940e 009e                 	CALL	Mostrar_Display					// mostrar valores en proto
+                                 
+                                 // ==================================== //
                                  
                                  LECTURA_BTNS:
                                  	// Revisar BTN incremento
-000069 9100 0105                 	LDS		R16, BTN_inc					// Cargar bandera de incremento
-00006b 3001                      	CPI		R16, 1
-00006c f451                      	BRNE	LECTURA_DEC
+000075 9100 0105                 	LDS		R16, BTN_inc					// Cargar bandera de incremento
+000077 3001                      	CPI		R16, 1
+000078 f451                      	BRNE	LECTURA_DEC
                                  
-00006d 9100 0100                 	LDS		R16, C_LEDs						// Cargar valor actual de LEDs
-00006f 9503                      	INC		R16								// incremento
-000070 700f                      	ANDI	R16, 0b00001111					// Mantener margen
-000071 9300 0100                 	STS		C_LEDs, R16						// Guardar nuevo valor
-000073 b905                      	OUT		PORTB, R16						// Evniar a LEDs
+000079 9100 0100                 	LDS		R16, C_LEDs						// Cargar valor actual de LEDs
+00007b 9503                      	INC		R16								// incremento
+00007c 700f                      	ANDI	R16, 0b00001111					// Mantener margen
+00007d 9300 0100                 	STS		C_LEDs, R16						// Guardar nuevo valor
+00007f b905                      	OUT		PORTB, R16						// Evniar a LEDs
                                  
                                  	// Limpiar bandera incremento
-000074 e000                      	LDI		R16, 0x00
-000075 9300 0105                 	STS		BTN_inc, R16
+000080 e000                      	LDI		R16, 0x00
+000081 9300 0105                 	STS		BTN_inc, R16
                                  
                                  LECTURA_DEC:
                                  	// Revisar BTN decremento
-000077 9100 0106                 	LDS		R16, BTN_dec					// Cargar bandera de decremento
-000079 3001                      	CPI		R16, 1
-00007a f6b1                      	BRNE	MAIN_LOOP
+000083 9100 0106                 	LDS		R16, BTN_dec					// Cargar bandera de decremento
+000085 3001                      	CPI		R16, 1
+000086 f651                      	BRNE	MAIN_LOOP
                                  
-00007b 9100 0100                 	LDS		R16, C_LEDs						// Cargar valor actual de LEDs
-00007d 950a                      	DEC		R16								// incremento
-00007e 700f                      	ANDI	R16, 0b00001111					// Mantener margen
-00007f 9300 0100                 	STS		C_LEDs, R16						// Guardar nuevo valor
-000081 b905                      	OUT		PORTB, R16						// Evniar a LEDs
+000087 9100 0100                 	LDS		R16, C_LEDs						// Cargar valor actual de LEDs
+000089 950a                      	DEC		R16								// incremento
+00008a 700f                      	ANDI	R16, 0b00001111					// Mantener margen
+00008b 9300 0100                 	STS		C_LEDs, R16						// Guardar nuevo valor
+00008d b905                      	OUT		PORTB, R16						// Evniar a LEDs
                                  
                                  	// Limpiar bandera incremento
-000082 e000                      	LDI		R16, 0x00
-000083 9300 0106                 	STS		BTN_dec, R16
+00008e e000                      	LDI		R16, 0x00
+00008f 9300 0106                 	STS		BTN_dec, R16
                                  
-000085 cfcb                          RJMP    MAIN_LOOP
+000091 cfbf                          RJMP    MAIN_LOOP
                                  
                                  /****************************************/
                                  // NON-Interrupt subroutines
                                  
                                  IN_TIMER0:
                                  	// Modo CTC (Clear Timer on Compare Match)
-000086 e002                      	LDI		R16, (1 << WGM01)
-000087 bd04                      	OUT		TCCR0A, R16
+000092 e002                      	LDI		R16, (1 << WGM01)
+000093 bd04                      	OUT		TCCR0A, R16
                                  
-                                 	// Prescaler 1024
-000088 e003                      	LDI		R16, (0 << CS02) | (1 << CS01) | (1 << CS00)  
-000089 bd05                      	OUT		TCCR0B, R16
+                                 	// Prescaler 64
+000094 e003                      	LDI		R16, (0 << CS02) | (1 << CS01) | (1 << CS00)  
+000095 bd05                      	OUT		TCCR0B, R16
                                  	
-00008a e90c                      	LDI		R16, 156							// R: 156.25
-00008b bd07                      	OUT		OCR0A, R16
+000096 e90c                      	LDI		R16, 156							// R: 156.25
+000097 bd07                      	OUT		OCR0A, R16
                                  
                                  	// habilitar interrupciones por comparacion
-00008c e002                      	LDI		R16, (1 << OCIE0A)
-00008d 9300 006e                 	STS		TIMSK0, R16
+000098 e002                      	LDI		R16, (1 << OCIE0A)
+000099 9300 006e                 	STS		TIMSK0, R16
                                  	
                                  	// Iniciar contador en 0
-00008f e000                      	LDI		R16, 0x00
-000090 bd06                      	OUT		TCNT0, R16
+00009b e000                      	LDI		R16, 0x00
+00009c bd06                      	OUT		TCNT0, R16
                                  
-000091 9508                      	RET
+00009d 9508                      	RET
                                  
                                  Mostrar_Display:
-000092 930f                      	PUSH	R16
-000093 931f                      	PUSH	R17
-000094 93ef                      	PUSH	ZL
-000095 93ff                      	PUSH	ZH
+00009e 930f                      	PUSH	R16
+00009f 931f                      	PUSH	R17
+0000a0 93ef                      	PUSH	ZL
+0000a1 93ff                      	PUSH	ZH
                                  
-000096 9100 0101                 	LDS		R16, C_Display1
+0000a2 9140 0103                 	LDS		R20, Display_Actual
                                  
-                                 	// Apuntar a tabla de segmentos según C_Display1
-000098 0f00                      	LSL		R16		// mult por 2 porque dw ocupa 2 bytes
-000099 eae2                      	LDI		ZL, LOW(VECTOR*2)
-00009a e0f1                      	LDI		ZH, HIGH(VECTOR*2)
-00009b 2711                      	CLR		R17					
-00009c 0fe0                      	ADD		ZL, R16				
-00009d 1ff1                      	ADC		ZH, R17				// Add with Carry
-00009e 9104                      	LPM		R16, Z
+                                 	// VERIFICAR DISPLAU CORRESPONDIENTE
                                  
-00009f b90b                      	OUT		PORTD, R16			// mostrar en leds
+0000a4 3040                      	CPI		R20, 0
+0000a5 f019                      	BREQ	MOSTRAR_UNIDADES
                                  
-0000a0 91ff                      	POP		ZH
-0000a1 91ef                      	POP		ZL
-0000a2 911f                      	POP		R17
-0000a3 910f                      	POP		R16
-0000a4 9508                      	RET
+0000a6 9100 0102                 	LDS		R16, C_Display2
+0000a8 c002                      	RJMP	FIN_SELECTORR
+                                 
+                                 MOSTRAR_UNIDADES:
+0000a9 9100 0101                 	LDS		R16, C_Display1
+                                 
+                                 FIN_SELECTORR:
+                                 
+                                 	// Apuntar a tabla de segmentos según C_Display
+0000ab 0f00                      	LSL		R16		// mult por 2 porque dw ocupa 2 bytes
+0000ac ece4                      	LDI		ZL, LOW(VECTOR*2)
+0000ad e0f1                      	LDI		ZH, HIGH(VECTOR*2)
+0000ae 2711                      	CLR		R17					
+0000af 0fe0                      	ADD		ZL, R16				
+0000b0 1ff1                      	ADC		ZH, R17				// Add with Carry
+0000b1 9104                      	LPM		R16, Z
+                                 
+0000b2 b90b                      	OUT		PORTD, R16			// mostrar en leds
+                                 
+0000b3 91ff                      	POP		ZH
+0000b4 91ef                      	POP		ZL
+0000b5 911f                      	POP		R17
+0000b6 910f                      	POP		R16
+0000b7 9508                      	RET
                                  
                                  /****************************************/
                                  // Interrupt routines
                                  
                                  TIM0_ISR:
                                  
-0000a5 930f                      	PUSH	R16
-0000a6 931f                      	PUSH	R17
-0000a7 b70f                      	IN		R16, SREG
-0000a8 930f                      	PUSH	R16
+0000b8 930f                      	PUSH	R16
+0000b9 931f                      	PUSH	R17
+0000ba b70f                      	IN		R16, SREG
+0000bb 930f                      	PUSH	R16
                                  
                                  	// incrementar contador 100ms
-0000a9 9100 0104                 	LDS		R16, C_Segundos
-0000ab 9503                      	INC		R16
-0000ac 9300 0104                 	STS		C_Segundos, R16
-0000ae 9300 0104                 	STS		C_Segundos, R16
+0000bc 9100 0104                 	LDS		R16, C_Segundos
+0000be 9503                      	INC		R16
+0000bf 9300 0104                 	STS		C_Segundos, R16
                                  
                                  	// modificar Display actual 
                                  	// XOR (Exclusive OR) || 1 Diferentes, 0 Iguales
-0000b0 9100 0103                 	LDS		R16, Display_Actual
-0000b2 e011                      	LDI		R17, 1
-0000b3 2701                      	EOR		R16, R17
-0000b4 9300 0103                 	STS		Display_Actual, R16
+0000c1 9100 0103                 	LDS		R16, Display_Actual
+0000c3 e011                      	LDI		R17, 1
+0000c4 2701                      	EOR		R16, R17
+0000c5 9300 0103                 	STS		Display_Actual, R16
                                  
-0000b6 910f                      	POP		R16
-0000b7 bf0f                      	OUT		SREG, R16
-0000b8 911f                      	POP		R17
-0000b9 910f                      	POP		R16
+0000c7 910f                      	POP		R16
+0000c8 bf0f                      	OUT		SREG, R16
+0000c9 911f                      	POP		R17
+0000ca 910f                      	POP		R16
                                  
-0000ba 9518                      	RETI
+0000cb 9518                      	RETI
                                  
                                  
                                  BTN_ISR:
                                  
                                  	// Guardar en pila
-0000bb 930f                      	PUSH	R16								
-0000bc 931f                      	PUSH	R17	
-0000bd b70f                      	IN		R16, SREG						// Guardar Status Register
-0000be 930f                      	PUSH	R16	
+0000cc 930f                      	PUSH	R16								
+0000cd 931f                      	PUSH	R17	
+0000ce b70f                      	IN		R16, SREG						// Guardar Status Register
+0000cf 930f                      	PUSH	R16	
                                  	
-0000bf b116                      	IN		R17, PINC						// Lectura btns
-0000c0 ff10                      	SBRS	R17, PC0						// PC0=1 no presionado || PC0=0 si presionado
-0000c1 c001                      	RJMP	INCREMENTAR
-0000c2 c003                      	RJMP	REVISAR_DEC
+0000d0 b116                      	IN		R17, PINC						// Lectura btns
+0000d1 ff10                      	SBRS	R17, PC0						// PC0=1 no presionado || PC0=0 si presionado
+0000d2 c001                      	RJMP	INCREMENTAR
+0000d3 c003                      	RJMP	REVISAR_DEC
                                  	
                                  INCREMENTAR:
-0000c3 e001                      	LDI		R16, 1
-0000c4 9300 0105                 	STS		BTN_inc, R16					// Modificar estado bandera					
+0000d4 e001                      	LDI		R16, 1
+0000d5 9300 0105                 	STS		BTN_inc, R16					// Modificar estado bandera					
                                  
                                  REVISAR_DEC:
-0000c6 ff11                      	SBRS	R17, PC1						// PC0=1 no presionado || PC0=0 si presionado
-0000c7 c001                      	RJMP	DECREMENTAR
-0000c8 c003                      	RJMP	FIN1_ISR
+0000d7 ff11                      	SBRS	R17, PC1						// PC0=1 no presionado || PC0=0 si presionado
+0000d8 c001                      	RJMP	DECREMENTAR
+0000d9 c003                      	RJMP	FIN1_ISR
                                  
                                  DECREMENTAR:
-0000c9 e001                      	LDI		R16, 1
-0000ca 9300 0106                 	STS		BTN_dec, R16					// Modificar estado bandera					
+0000da e001                      	LDI		R16, 1
+0000db 9300 0106                 	STS		BTN_dec, R16					// Modificar estado bandera					
                                  
                                  FIN1_ISR:
-0000cc 910f                      	POP		R16
-0000cd bf0f                      	OUT		SREG, R16						// Restaurar Status Register
-0000ce 911f                      	POP		R17
-0000cf 910f                      	POP		R16
+0000dd 910f                      	POP		R16
+0000de bf0f                      	OUT		SREG, R16						// Restaurar Status Register
+0000df 911f                      	POP		R17
+0000e0 910f                      	POP		R16
                                  
-0000d0 9518                      	RETI
+0000e1 9518                      	RETI
                                  
                                  /****************************************/
                                  
                                  // TABLA DE PATRONES PARA DISPLAY 7 SEGMENTOS
                                  VECTOR:
-0000d1 0040                          .dw 0x40    // 0  
-0000d2 0075                          .dw 0x75    // 1
-0000d3 0022                          .dw 0x22    // 2
-0000d4 0024                          .dw 0x24    // 3
-0000d5 0015                          .dw 0x15    // 4
-0000d6 000c                          .dw 0x0C    // 5
-0000d7 0008                          .dw 0x08    // 6
-0000d8 0065                          .dw 0x65    // 7
-0000d9 0000                          .dw 0x00    // 8
-0000da 0005                          .dw 0x05    // 9
+0000e2 0040                          .dw 0x40    // 0  
+0000e3 0075                          .dw 0x75    // 1
+0000e4 0022                          .dw 0x22    // 2
+0000e5 0024                          .dw 0x24    // 3
+0000e6 0015                          .dw 0x15    // 4
+0000e7 000c                          .dw 0x0C    // 5
+0000e8 0008                          .dw 0x08    // 6
+0000e9 0065                          .dw 0x65    // 7
+0000ea 0000                          .dw 0x00    // 8
+0000eb 0005                          .dw 0x05    // 9
                                  //    .dw 0x01    // A
                                  //    .dw 0x18    // b
                                  //    .dw 0x4A    // C
@@ -1380,26 +1416,26 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16: 103 r17:  13 r18:   0 r19:   0 r20:   0 
+r13:   0 r14:   0 r15:   0 r16: 104 r17:  18 r18:   0 r19:   0 r20:   2 
 r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
 r29:   0 r30:   4 r31:   4 
-Registers used: 5 out of 35 (14.3%)
+Registers used: 6 out of 35 (17.1%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   1 add   :   1 adiw  :   0 and   :   0 
-andi  :   3 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
+andi  :   2 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   2 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   3 cbi   :   2 cbr   :   0 
+brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   4 cbi   :   2 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   4 cpse  :   0 dec   :   1 eor   :   1 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   3 jmp   :   3 
-ld    :   0 ldd   :   0 ldi   :  29 lds   :  10 lpm   :   2 lsl   :   1 
+cpi   :   7 cpse  :   0 dec   :   1 eor   :   1 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   3 inc   :   4 jmp   :   3 
+ld    :   0 ldd   :   0 ldi   :  31 lds   :  13 lpm   :   2 lsl   :   1 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  17 pop   :  10 
-push  :  10 rcall :   0 ret   :   2 reti  :   2 rjmp  :   6 rol   :   0 
+push  :  10 rcall :   0 ret   :   2 reti  :   2 rjmp  :   7 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   2 sec   :   0 seh   :   0 
 sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
@@ -1410,7 +1446,7 @@ Instructions used: 28 out of 113 (24.8%)
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0001b6    370     20    390   32768   1.2%
+[.cseg] 0x000000 0x0001d8    404     20    424   32768   1.3%
 [.dseg] 0x000100 0x000107      0      7      7    2048   0.3%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

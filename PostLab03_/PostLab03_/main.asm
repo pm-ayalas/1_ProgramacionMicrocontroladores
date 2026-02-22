@@ -8,7 +8,7 @@
 *				y decremento mediante botones con 
 *				interrupciones on-change y pull-us internos.
 *				Contador hexadecimal de unidades y decenas, 
-*				utiliza interrupciones del TIMER0 de 20ms,
+*				utiliza interrupciones del TIMER0 de 10ms,
 *				cambia combinación de segmentos del display 
 *				cada 1 segundo. Ambos contadores funcionan
 *				al mismo tiempo.		
@@ -30,7 +30,7 @@
 C_LEDS:				.BYTE 1				// Contador LEDs
 
 C_Display1:			.BYTE 1				// Contador Display unidades
-C_Display2:			.BYTE 1				// Contador Display unidades
+C_Display2:			.BYTE 1				// Contador Display decenas
 
 Display_Actual:		.BYTE 1				// Variable para ubicar el display mostrado
 
@@ -146,6 +146,7 @@ UNIDADES:
 	CBI		PORTC, PC2
 
 FIN_SELECTOR:
+	CALL	Mostrar_Display
 
 	// Contador de 1 seg
 	LDS		R16, C_Segundos
@@ -155,12 +156,35 @@ FIN_SELECTOR:
 	LDI		R16, 0x00
 	STS		C_Segundos, R16					// Reiniciamos contador segundos
 
+// ==================================== //
+// LOGICA CONTEO DE SEGUNDOS
+// ==================================== //
+
 	// Incremento Display
 	LDS		R16, C_Display1
+	LDS		R17, C_Display2
+
 	INC		R16								// incremento contador
-	ANDI	R16, 0b00001111					// mantener margen
-	STS		C_Display1, R16		
+
+	CPI		R16, 10							// unidades llegó a 10?
+	BRNE	CONTINUAR
+
+	LDI		R16, 0							// reiniciamos display1					
+	INC		R17								// incrementamos display2
+
+	CPI		R17, 6							// decenas llegó a 10?
+	BRNE	CONTINUAR
+
+	LDI		R17, 0							// reiniciamos display2
+
+CONTINUAR:
+
+	STS		C_Display1, R16					// actualizar contadores de displays
+	STS		C_Display2, R17
+	
 	CALL	Mostrar_Display					// mostrar valores en proto
+
+// ==================================== //
 
 LECTURA_BTNS:
 	// Revisar BTN incremento
@@ -204,7 +228,7 @@ IN_TIMER0:
 	LDI		R16, (1 << WGM01)
 	OUT		TCCR0A, R16
 
-	// Prescaler 1024
+	// Prescaler 64
 	LDI		R16, (0 << CS02) | (1 << CS01) | (1 << CS00)  
 	OUT		TCCR0B, R16
 	
@@ -227,9 +251,22 @@ Mostrar_Display:
 	PUSH	ZL
 	PUSH	ZH
 
+	LDS		R20, Display_Actual
+
+	// VERIFICAR DISPLAU CORRESPONDIENTE
+
+	CPI		R20, 0
+	BREQ	MOSTRAR_UNIDADES
+
+	LDS		R16, C_Display2
+	RJMP	FIN_SELECTORR
+
+MOSTRAR_UNIDADES:
 	LDS		R16, C_Display1
 
-	// Apuntar a tabla de segmentos según C_Display1
+FIN_SELECTORR:
+
+	// Apuntar a tabla de segmentos según C_Display
 	LSL		R16		// mult por 2 porque dw ocupa 2 bytes
 	LDI		ZL, LOW(VECTOR*2)
 	LDI		ZH, HIGH(VECTOR*2)
@@ -259,7 +296,6 @@ TIM0_ISR:
 	// incrementar contador 100ms
 	LDS		R16, C_Segundos
 	INC		R16
-	STS		C_Segundos, R16
 	STS		C_Segundos, R16
 
 	// modificar Display actual 
