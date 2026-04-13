@@ -31,14 +31,14 @@ MES_UNIDAD:				.BYTE 1					// Valores Mes
 MES_DECENA:				.BYTE 1
 ANIO:					.BYTE 1					// Valor Año	
 
-CONFIG_MIN_UNIDAD:		.BYTE 1					// Valores Minutos para configuración
-CONFIG_MIN_DECENA:		.BYTE 1
-CONFIG_HRS_UNIDAD:		.BYTE 1					// Valores Horas para configuración
-CONFIG_HRS_DECENA:		.BYTE 1		
-CONFIG_DIA_UNIDAD:		.BYTE 1					// Valores Días para configuración
-CONFIG_DIA_DECENA:		.BYTE 1
-CONFIG_MES_UNIDAD:		.BYTE 1					// Valores Mes para configuración
-CONFIG_MES_DECENA:		.BYTE 1
+TEMP_MIN_UNIDAD:		.BYTE 1					// Valores para configuración MODO 4
+TEMP_MIN_DECENA:		.BYTE 1
+TEMP_HRS_UNIDAD:		.BYTE 1					// Valores para configuración MODO 5
+TEMP_HRS_DECENA:		.BYTE 1
+TEMP_MES_UNIDAD:		.BYTE 1					// Valores para configuración MODO 6
+TEMP_MES_DECENA:		.BYTE 1
+TEMP_DIA_UNIDAD:		.BYTE 1					// Valores para configuración MODO 7
+TEMP_DIA_DECENA:		.BYTE 1
 
 ALARMA_MIN_UNIDAD:		.BYTE 1					// Valores Minutos para configuración ALARMA
 ALARMA_MIN_DECENA:		.BYTE 1
@@ -57,6 +57,8 @@ PUNTITOS:				.BYTE 1					// Variable para estado PUNTITOS
 
 BTN_INC:				.BYTE 1					// Bandera btn incremento
 BTN_DEC:				.BYTE 1					// Bandera btn decremento
+
+GUARDAR_VALORES:		.BYTE 1					// Bandera para guardar nuevos valores en Modo Configuración
 	
 // ================================ //
 // FALSH
@@ -142,21 +144,35 @@ SETUP:
 	STS		MIN_DECENA, R16
 	STS		HRS_UNIDAD, R16
 	STS		HRS_DECENA, R16
-	STS		DIA_UNIDAD, R16
+
 	STS		DIA_DECENA, R16
-	STS		MES_UNIDAD, R16
 	STS		MES_DECENA, R16
-	STS		ANIO, R16
 	STS		ALARMA, R16
-	STS		ALARMA_MIN, R16
-	STS		ALARMA_HRS, R16
+
+	STS		ALARMA_MIN_UNIDAD, R16
+	STS		ALARMA_MIN_DECENA, R16
+	STS		ALARMA_HRS_UNIDAD, R16
+	STS		ALARMA_HRS_DECENA, R16
 
 	STS		PUNTITOS, R16
 	STS		C_SEGUNDOS, R16
 	STS		BTN_INC, R16
 	STS		BTN_DEC, R16
 
+	STS		TEMP_MIN_UNIDAD, R16
+	STS		TEMP_MIN_DECENA, R16
+	STS		TEMP_HRS_UNIDAD, R16
+	STS		TEMP_HRS_DECENA, R16
+	STS		TEMP_MES_UNIDAD, R16
+	STS		TEMP_MES_DECENA, R16
+	STS		TEMP_DIA_UNIDAD, R16
+	STS		TEMP_DIA_DECENA, R16
+
+	STS		GUARDAR_VALORES, R16
+
 	LDI		R16, 1
+	STS		DIA_UNIDAD, R16
+	STS		MES_UNIDAD, R16
 	STS		DISPLAY_ACTUAL, R16
 	STS		MODO, R16
 	
@@ -194,7 +210,7 @@ VERIFICAR_1S:
 	CBI		PORTD, 7							// Apagar puntitos
 	LDI		R16, 0b00000000						// Modificar Bandera PUNTITOS
 	STS		PUNTITOS, R16
-	CALL	REFRESCAR_RELOJ						// Actulizar valores de reloj
+	CALL	REFRESCAR_RELOJ1					// Actulizar valores de reloj
 	CLR		R16
 	STS		C_SEGUNDOS, R16						// Limpiar contador Segundos
 
@@ -244,7 +260,7 @@ REVISAR_M5:
 	SBI		PORTC, 4	//
 	CBI		PORTC, 5	//
 	SBI		PORTB, 5	//
-	CALL	MOSTRAR_MODO4
+	CALL	MOSTRAR_MODO5
 	RJMP	MAIN_LOOP1
 REVISAR_M6:
 	CPI		R16, 6
@@ -260,7 +276,7 @@ REVISAR_M7:
 	CBI		PORTC, 4	//
 	SBI		PORTC, 5	//
 	SBI		PORTB, 5	//
-	CALL	MOSTRAR_MODO6
+	CALL	MOSTRAR_MODO7
 	RJMP	MAIN_LOOP1
 REVISAR_M8:
 	CPI		R16, 8
@@ -276,7 +292,40 @@ REVISAR_M9:
 	CBI		PORTC, 4	//
 	CBI		PORTC, 5	//
 	SBI		PORTB, 5	//
-	CALL	MOSTRAR_MODO4
+	CALL	MOSTRAR_MODO5
+
+// ========================================== //
+// Lógica verificar ALARMA
+// ========================================== //
+
+	LDS		R16, ALARMA_HRS_DECENA
+	LDS		R17, HRS_DECENA
+	CP		R16, R17
+	BREQ	VERIFICAR2
+	RJMP	MAIN_LOOP1
+
+VERIFICAR2:
+	LDS		R16, ALARMA_HRS_UNIDAD
+	LDS		R17, HRS_UNIDAD
+	CP		R16, R17
+	BREQ	VERIFICAR3
+	RJMP	MAIN_LOOP1
+
+VERIFICAR3:
+	LDS		R16, ALARMA_MIN_DECENA
+	LDS		R17, MIN_DECENA
+	CP		R16, R17
+	BREQ	VERIFICAR4
+	RJMP	MAIN_LOOP1
+
+VERIFICAR4:
+	LDS		R16, ALARMA_MIN_UNIDAD
+	LDS		R17, MIN_UNIDAD
+	CP		R16, R17
+	BREQ	ENCENDER_ALARMA
+	RJMP	MAIN_LOOP1
+
+ENCENDER_ALARMA:
 
 MAIN_LOOP1:
     RJMP    MAIN_LOOP
@@ -451,14 +500,14 @@ M3_DISP3:
 	RJMP	M3_FIN
 
 M3_DISP4:
-	LDS		R20, DIA_UNIDAD
+	LDS		R20, DIA_DECENA
 	CALL	ENVIAR_A_DISPLAY
 
 M3_FIN:
 	RET
 
 // ================================ //
-// MODO 4 => HRS:MIN
+// MODO 4 => HRS:MIN [Modifica MIN] 
 // ================================ //
 MOSTRAR_MODO4:
 	LDS		R16, DISPLAY_ACTUAL					// Enviar valor según DISPLAY ACTUAL
@@ -473,33 +522,202 @@ MOSTRAR_MODO4:
 
 	// VARIABLES TEMPORALES
 M4_DISP1:
-	LDS		R20, MIN_UNIDAD
-	STS		CONFIG_MIN_UNIDAD, R20
+	LDS		R20, TEMP_MIN_UNIDAD
 	CALL	ENVIAR_A_DISPLAY
 	RJMP	M4_FIN
 
 M4_DISP2:
-	LDS		R20, MIN_DECENA
-	STS		CONFIG_MIN_DECENA, R20
+	LDS		R20, TEMP_MIN_DECENA
 	CALL	ENVIAR_A_DISPLAY
 	RJMP	M4_FIN
 
 M4_DISP3:
 	LDS		R20, HRS_UNIDAD
-	STS		CONFIG_HRS_UNIDAD, R20
 	CALL	ENVIAR_A_DISPLAY
 	RJMP	M4_FIN
 
 M4_DISP4:
 	LDS		R20, HRS_DECENA
-	STS		CONFIG_HRS_DECENA, R20
 	CALL	ENVIAR_A_DISPLAY
 
 M4_FIN:
+
+// VERIFICAR BANDERAS DECREMENTO-INCREMENTO
+// =========================================== //
+
+	LDS		R25, BTN_INC
+	CPI		R25, 1
+	BREQ	SUMA_MINUTOS	
+
+	LDS		R25, BTN_DEC
+	CPI		R25, 1
+	BREQ	RESTA_MINUTOS
+
+SUMA_MINUTOS:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_INC, R25
+
+	LDS		R24, TEMP_MIN_UNIDAD
+	LDS		R26, TEMP_MIN_DECENA
+
+	INC		R24
+	CPI		R24, 10
+	BRLT	NO_REINICIO41_UNIDAD
+
+	LDI		R24, 0
+	INC		R25
+	CPI		R25, 6
+	BRLT	NO_REINICIO41_DECENA
+
+	LDI		R25, 0
+
+NO_REINICIO41_UNIDAD:
+NO_REINICIO41_DECENA:
+
+	STS		TEMP_MIN_UNIDAD, R24
+	STS		TEMP_MIN_DECENA, R25
+
+	RJMP	M4_FIN2
+
+RESTA_MINUTOS:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_DEC, R25
+
+	LDS		R24, TEMP_MIN_UNIDAD
+	LDS		R26, TEMP_MIN_DECENA
+
+	SUBI	R24, 1
+	CPI		R24, 0xFF
+
+	BRCC	NO_UNDERFLOW1
+
+	LDI		R24, 9
+	SUBI	R25, 1
+	CPI		R25, 0xFF							// decenas también hicieron underflow?
+	BRCC	NO_UNDERFLOW2
+
+	LDI		R25, 5
+	RJMP	M4_FIN2	
+
+NO_UNDERFLOW1:
+NO_UNDERFLOW2:
+
+	STS		TEMP_MIN_UNIDAD, R24
+	STS		TEMP_MIN_DECENA, R25
+
+M4_FIN2:
+
+// VERIFICAR BANDERA GUARDAR NUEVOS VALORES
+// =========================================== //
+
+	LDS		R25, GUARDAR_VALORES
+	CPI		R25, 1
+	BREQ	ACTUALIZAR_INFO_M4
+	RJMP	M4_FIN3
+
+ACTUALIZAR_INFO_M4:
+	LDS		R25, TEMP_MIN_UNIDAD
+	STS		MIN_UNIDAD, R25
+	LDS		R25, TEMP_MIN_DECENA
+	STS		MIN_DECENA, R25
+
+	LDI		R25, 0								// Limpiar bandera
+	STS		GUARDAR_VALORES, R25
+
+M4_FIN3:
 	RET
 
 // ================================ //
-// MODO 5 => DIA/MES
+// MODO 5 => HRS:MIN [Modifica HRS] 
+// ================================ //
+MOSTRAR_MODO5:
+	LDS		R16, DISPLAY_ACTUAL					// Enviar valor según DISPLAY ACTUAL
+
+	CPI		R16, 1
+	BREQ	M5_DISP1
+	CPI		R16, 2
+	BREQ	M5_DISP2
+	CPI		R16, 3
+	BREQ	M5_DISP3
+	RJMP	M5_DISP4
+
+	// VARIABLES TEMPORALES
+M5_DISP1:
+	LDS		R20, MIN_UNIDAD
+	CALL	ENVIAR_A_DISPLAY
+	RJMP	M4_FIN
+
+M5_DISP2:
+	LDS		R20, MIN_DECENA
+	CALL	ENVIAR_A_DISPLAY
+	RJMP	M4_FIN
+
+M5_DISP3:
+	LDS		R20, TEMP_HRS_UNIDAD
+	CALL	ENVIAR_A_DISPLAY
+	RJMP	M4_FIN
+
+M5_DISP4:
+	LDS		R20, TEMP_HRS_DECENA
+	CALL	ENVIAR_A_DISPLAY
+
+M5_FIN:
+
+// VERIFICAR BANDERAS DECREMENTO-INCREMENTO
+// =========================================== //
+
+	LDS		R25, BTN_INC
+	CPI		R25, 1
+	BREQ	SUMA_HORAS	
+
+	LDS		R25, BTN_DEC
+	CPI		R25, 1
+	BREQ	RESTA_HORAS
+
+SUMA_HORAS:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_INC, R25
+
+	LDS		R25, TEMP_HRS_UNIDAD
+	INC		R25
+	STS		TEMP_HRS_UNIDAD, R25
+	CALL	REFRESCAR_MODO5
+
+	RJMP	M5_FIN2
+
+RESTA_HORAS:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_DEC, R25
+
+	LDS		R25, TEMP_HRS_UNIDAD
+	DEC		R25
+	STS		TEMP_HRS_UNIDAD, R25
+	CALL	REFRESCAR_MODO5
+
+M5_FIN2:
+
+// VERIFICAR BANDERA GUARDAR NUEVOS VALORES
+// =========================================== //
+
+	LDS		R25, GUARDAR_VALORES
+	CPI		R25, 1
+	BREQ	ACTUALIZAR_INFO_M5
+	RJMP	M5_FIN3
+
+ACTUALIZAR_INFO_M5:
+	LDS		R25, TEMP_HRS_UNIDAD
+	STS		HRS_UNIDAD, R25
+	LDS		R25, TEMP_HRS_DECENA
+	STS		HRS_DECENA, R25
+
+	LDI		R25, 0								// Limpiar bandera
+	STS		GUARDAR_VALORES, R25
+
+M5_FIN3:
+	RET
+
+// ================================ //
+// MODO 6 => DIA/MES [Modifica MES]
 // ================================ //
 MOSTRAR_MODO6:
 
@@ -515,31 +733,168 @@ MOSTRAR_MODO6:
 
 	// VARIABLES TEMPORALES
 M6_DISP1:
-	LDS		R20, MES_UNIDAD
-	STS		CONFIG_MES_UNIDAD, R20
+	LDS		R20, TEMP_MES_UNIDAD
 	CALL	ENVIAR_A_DISPLAY
 	RJMP	M6_FIN
 
 M6_DISP2:
-	LDS		R20, MES_DECENA
-	STS		CONFIG_MES_DECENA, R20
+	LDS		R20, TEMP_MES_DECENA
 	CALL	ENVIAR_A_DISPLAY
 	RJMP	M6_FIN
 
 M6_DISP3:
 	LDS		R20, DIA_UNIDAD
-	STS		CONFIG_DIA_UNIDAD, R20
 	CALL	ENVIAR_A_DISPLAY
 	RJMP	M6_FIN
 
 M6_DISP4:
 	LDS		R20, DIA_DECENA
-	STS		CONFIG_DIA_DECENA, R20
 	CALL	ENVIAR_A_DISPLAY
 
 M6_FIN:
+
+// VERIFICAR BANDERAS DECREMENTO-INCREMENTO
+// =========================================== //
+
+	LDS		R25, BTN_INC
+	CPI		R25, 1
+	BREQ	SUMA_MESES	
+
+	LDS		R25, BTN_DEC
+	CPI		R25, 1
+	BREQ	RESTA_MESES
+
+SUMA_MESES:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_INC, R25
+
+	LDS		R25, TEMP_MES_UNIDAD
+	INC		R25
+	STS		TEMP_MES_UNIDAD, R25
+	CALL	REFRESCAR_MODO6
+
+	RJMP	M6_FIN2
+
+RESTA_MESES:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_DEC, R25
+
+	LDS		R25, TEMP_MES_UNIDAD
+	DEC		R25
+	STS		TEMP_MES_UNIDAD, R25
+	CALL	REFRESCAR_MODO6
+
+M6_FIN2:
+
+// VERIFICAR BANDERA GUARDAR NUEVOS VALORES
+// =========================================== //
+
+	LDS		R25, GUARDAR_VALORES
+	CPI		R25, 1
+	BREQ	ACTUALIZAR_INFO_M6
+	RJMP	M6_FIN3
+
+ACTUALIZAR_INFO_M6:
+	LDS		R25, TEMP_MES_UNIDAD
+	STS		MES_UNIDAD, R25
+	LDS		R25, TEMP_MES_DECENA
+	STS		MES_DECENA, R25
+
+	LDI		R25, 0								// Limpiar bandera
+	STS		GUARDAR_VALORES, R25
+
+M6_FIN3:
 	RET
 
+// ================================ //
+// MODO 7 => DIA/MES [Modifica DIAS]
+// ================================ //
+MOSTRAR_MODO7:
+
+	LDS		R16, DISPLAY_ACTUAL					// Enviar valor según DISPLAY ACTUAL
+
+	CPI		R16, 1
+	BREQ	M7_DISP1
+	CPI		R16, 2
+	BREQ	M7_DISP2
+	CPI		R16, 3
+	BREQ	M7_DISP3
+	RJMP	M7_DISP4
+
+	// VARIABLES TEMPORALES
+M7_DISP1:
+	LDS		R20, MES_UNIDAD
+	CALL	ENVIAR_A_DISPLAY
+	RJMP	M6_FIN
+
+M7_DISP2:
+	LDS		R20, MES_DECENA
+	CALL	ENVIAR_A_DISPLAY
+	RJMP	M6_FIN
+
+M7_DISP3:
+	LDS		R20, TEMP_DIA_UNIDAD
+	CALL	ENVIAR_A_DISPLAY
+	RJMP	M6_FIN
+
+M7_DISP4:
+	LDS		R20, TEMP_DIA_DECENA
+	CALL	ENVIAR_A_DISPLAY
+
+M7_FIN:
+
+// VERIFICAR BANDERAS DECREMENTO-INCREMENTO
+// =========================================== //
+
+	LDS		R25, BTN_INC
+	CPI		R25, 1
+	BREQ	SUMA_DIAS	
+
+	LDS		R25, BTN_DEC
+	CPI		R25, 1
+	BREQ	RESTA_DIAS
+
+SUMA_DIAS:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_INC, R25
+
+	LDS		R25, TEMP_DIA_UNIDAD
+	INC		R25
+	STS		TEMP_DIA_UNIDAD, R25
+	CALL	REFRESCAR_MODO7
+
+	RJMP	M7_FIN2
+
+RESTA_DIAS:
+	LDI		R25, 0								// Limpiar Bandera
+	STS		BTN_DEC, R25
+
+	LDS		R25, TEMP_DIA_UNIDAD
+	DEC		R25
+	STS		TEMP_DIA_UNIDAD, R25
+	CALL	REFRESCAR_MODO7
+
+M7_FIN2:
+
+// VERIFICAR BANDERA GUARDAR NUEVOS VALORES
+// =========================================== //
+
+	LDS		R25, GUARDAR_VALORES
+	CPI		R25, 1
+	BREQ	ACTUALIZAR_INFO_M7
+	RJMP	M7_FIN3
+
+ACTUALIZAR_INFO_M7:
+	LDS		R25, TEMP_DIA_UNIDAD
+	STS		DIA_UNIDAD, R25
+	LDS		R25, TEMP_DIA_DECENA
+	STS		DIA_DECENA, R25
+
+	LDI		R25, 0								// Limpiar bandera
+	STS		GUARDAR_VALORES, R25
+
+M7_FIN3:
+	RET
 
 ENVIAR_A_DISPLAY:
 	
@@ -570,7 +925,7 @@ ENVIAR_A_DISPLAY:
 	POP		ZH
 	RET
 
-REFRESCAR_RELOJ:
+REFRESCAR_RELOJ1:
 	
 	// ================================ //
 	// SEGUNDOS UNIDADES
@@ -665,18 +1020,118 @@ REINICIO5:
 	// ================================ //
 	// DIAS (COMPLETO)
 	// ================================ //
+	LDS		R16, DIA_DECENA
 	LDS		R17, DIA_UNIDAD
-	LDS		R18, DIA_DECENA
 
+	// Fusionar DÍAS
+	MOV		R18, R16
+	LDI		R19, 10
+	MUL		R18, R19
+	ADD		R18, R17	
 
+	// Obtener días correspondientes
+	CALL	OBTENER_DIAS_DEL_MES				// R21 = días del mes
 
-	// MESES 1
+	// Incrementar día
+	INC		R18
 
-	// MESES 2
+	CP		R18, R21
+	BREQ	DIA_REINICIAR
 
+	// Regresar FUSION a UNIDAD y DECENA
+	CALL	DES_FUSIONAR						// R20 = decenas | R21 = unidades
+
+	STS		DIA_DECENA, R20
+	STS		DIA_UNIDAD, R21
+	RJMP	FIN_REFRESCAR_RELOJ
+
+DIA_REINICIAR:
+	LDI		R20, 0
+	STS		DIA_DECENA, R20
+	LDI		R20, 1
+	STS		DIA_UNIDAD, R20
+	
+	// Ahora incrementar MES	
+
+	// ================================ //
+	// MES (COMPLETO)
+	// ================================ //
+	LDS		R16, MES_DECENA
+	LDS		R17, MES_UNIDAD
+
+	// Fusionar DÍAS
+	MOV		R18, R16
+	LDI		R19, 10
+	MUL		R18, R19
+	ADD		R18, R17
+
+	INC		R18									// Incrementar MES
+
+	CPI		R18, 13								// mantener margen de 12 meses
+	BREQ	MES_REINICIAR
+
+	// Regresar FUSION a UNIDAD y DECENA
+	CALL	DES_FUSIONAR						// R20 = decenas | R21 = unidades
+	
+	STS		MES_DECENA, R20
+	STS		MES_UNIDAD,	R21
+	RJMP	FIN_REFRESCAR_RELOJ
+
+MES_REINICIAR:
+
+	// Reiniciar a enero (01)
+	LDI		R20, 0
+	STS		MES_DECENA, R20
+	LDI		R21, 1
+	STS		MES_UNIDAD, R21
 
 FIN_REFRESCAR_RELOJ:
 	RET
+
+// ############################################################################## // -- Refrescar información pero con Valores Temporales
+REFRESCAR_MODO4:		// ----------------------------- MINUTOS
+
+	// ================================ //
+	// MINUTOS UNIDADES
+	// ================================ //
+	LDS		R16, TEMP_MIN_UNIDAD
+	CPI		R16, 9
+	BREQ	REINICIO32
+	INC		R16
+	STS		TEMP_MIN_UNIDAD, R16
+	RJMP	FIN_REFRESCAR_MODO4
+
+REINICIO32:
+	LDI		R16, 0
+	STS		TEMP_MIN_UNIDAD, R16
+
+	// ================================ //
+	// MINUTOS DECENAS
+	// ================================ //
+	LDS		R16, TEMP_MIN_DECENA
+	CPI		R16, 6
+	BREQ	REINICIO42
+	INC		R16
+	STS		TEMP_MIN_DECENA, R16
+	RJMP	FIN_REFRESCAR_MODO4
+
+REINICIO42:
+	LDI		R16, 0
+	STS		TEMP_MIN_DECENA, R16
+
+FIN_REFRESCAR_MODO4:
+RET
+
+REFRESCAR_MODO5:		// ----------------------------- HRS
+RET
+
+REFRESCAR_MODO6:		// ----------------------------- MESES
+RET
+
+REFRESCAR_MODO7:		// ----------------------------- DIAS (en rango del mes actual)
+RET
+
+// ############################################################################## //
 
 OBTENER_DIAS_DEL_MES:
 
@@ -684,34 +1139,51 @@ OBTENER_DIAS_DEL_MES:
 	PUSH	ZL
 	PUSH	R16
 	PUSH	R17
-	PUSH	R22
+	PUSH	R19
 
 	// verificar mes actual
 	LDS		R16, MES_DECENA
 	LDS		R17, MES_UNIDAD
 
 	// Fusionar
-	MOV		R22, R16
-	LDI		R24, 10
-	MUL		R22, R24
-	ADD		R22, R17
+	MOV		R19, R16
+	LDI		R20, 10
+	MUL		R19, R20
+	ADD		R19, R17
 
 	// Verificar en vector
 	LDI		ZH, HIGH(DIAS_DEL_MES*2)
 	LDI		ZL, LOW(DIAS_DEL_MES*2)
-	DEC		R22									// Indice de Enero => 0
-	LSL		R22									// mult por 2 porque dw ocupa 2 bytes
+	DEC		R19									// Indice de Enero => 0
+	LSL		R19									// mult por 2 porque dw ocupa 2 bytes
 
-	ADD		ZL, R22
+	ADD		ZL, R19
 	LDI		R16, 0
 	ADC		ZH, R16								// ZH = ZH + R16 + C (sumar acarreo si hubo)
-	LPM		R22, Z								// Load Program Memory (cargar según puntero)
+	LPM		R21, Z								// Load Program Memory (cargar según puntero)
 
-	POP		R22
+	POP		R19
 	POP		R17
 	POP		R16
 	POP		ZL
 	POP		ZH
+	RET
+
+DES_FUSIONAR:									// R18 => número por separar
+	
+	CLR		R20									// Registro para llevar conteo de resta de 10
+	MOV		R21, R18							// copia del numero original
+
+DIVISION:										// bucle para contar decenas
+	CPI		R21, 10								// se repite mientras R21 sea mayor o igual a 10
+	BRLT	FIN_DES_FUSIONAR					// Branch if Lower Than
+
+	// R21 sigue siendo > 10
+	SUBI	R21, 10								// R21 - 10
+	INC		R20									// incremento en decenas
+	RJMP	DIVISION							// repetir
+
+FIN_DES_FUSIONAR:
 	RET
 
 /****************************************/
@@ -745,78 +1217,116 @@ ACTUALIZAR1:
 
 BTN_ISR:
 
+	// ================================ //
+	// PC0 => Decremento
+	// PC1 => Incremento
+	// PC2 => Modo
+	// PC3 => Comodin (Guardar / Apagar Alarma)
+	// ================================ //
+
 	// Guardar en pila
 	PUSH	R16								
 	PUSH	R17	
-	IN		R16, SREG						// Guardar Status Register
+	IN		R16, SREG							// Guardar Status Register
 	PUSH	R16	
-	
+
 	// Lectura botones
 	IN		R17, PINC
 
+	SBRS	R17, 3								// Verificar Btn Comodin
+	RJMP	REVISAR_MODO
+	RJMP	BTN_COMODIN_PRESS
+
+REVISAR_MODO:
+	SBRS	R17, 2								// Verificar Btn Modo
+	RJMP	REVISAR_INC_DEC
+	RJMP	BTN_MODO_PRESS	
+
 	// Los botones estarán habilitados según el modo actual
 	//	  Los botones de INCREMENTO - DECREMENTO funcionan solo si el 
-	//    led de configuración está encendido.
+	//    modo es de configuración.
 
+REVISAR_INC_DEC:
 	LDS		R16, MODO
-	CPI		R16, 1
-	BREQ	NO_MODIFICACION
-	CPI		R16, 2
-	BREQ	NO_MODIFICACION
-	CPI		R16, 3
-	BREQ	NO_MODIFICACION
 
-	BREQ	REVISAR_INCREMENTAR
+	// Si modo es < 4, Salir - BNTS DESHABILITADOS
+	CPI		R16, 4
+	BRLO	FIN_BTN_ISR
 
-	// Si no estamos en modo de configuración, revisamos BTN MODO
-	
-NO_MODIFICACION:
-	SBRC	R17, PC2
-	RJMP	REVISAR_MODO
-
-REVISAR_INCREMENTAR:				
-	SBRS	R17, PC0						// PC0=1 no presionado || PC0=0 si presionado
-	RJMP	INCREMENTAR
+	// Si estamos en modo configuración
+	SBRS	R17, 1	
 	RJMP	REVISAR_DEC
-	
-INCREMENTAR:
-	LDI		R16, 1
-	STS		BTN_INC, R16					// Modificar estado bandera					
+	RJMP	BTN_INC_PRESS
 
 REVISAR_DEC:
-	SBRS	R17, PC1						// PC0=1 no presionado || PC0=0 si presionado
-	RJMP	DECREMENTAR
-	RJMP	REVISAR_ALARMA
+	SBRS	R17, 0
+	RJMP	FIN_BTN_ISR
+	RJMP	BTN_DEC_PRESS
 
-DECREMENTAR:
-	LDI		R16, 1
-	STS		BTN_DEC, R16					// Modificar estado bandera	
-		
-// Nos encontramos en modo configuración, la alarma puede estar siendo configurada
-// entonces revisamos si <btn guardar alarma> es presionado
-			
-REVISAR_ALARMA:
-	LDI		R16, 1
+	RJMP	FIN_BTN_ISR
+
+	// ================================ //
+	// BTN COMODIN PRESIONADO
+	// ================================ //
+BTN_COMODIN_PRESS:
+
+	// alarma sonando?
+	SBIS	PORTB, 4
+	RJMP	VERIFICAR_GUARDADO
+
+	// apagar alarma
+	CBI		PORTB, 4
+	LDI		R16, 0
 	STS		ALARMA, R16
+	RJMP	FIN_BTN_ISR
 
+VERIFICAR_GUARDADO:
+	
+	// modo configuracion?
+	LDS		R16, MODO
+	CPI		R16, 4
+	BRLO	FIN_BTN_ISR
 
-	//////////////
+	// Guardar nuevos valores
+	LDI		R16, 1
+	STS		GUARDAR_VALORES, R16
+	RJMP	FIN_BTN_ISR
 
-	RJMP	FIN1_ISR
-				
-REVISAR_MODO:
+	// ================================ //
+	// BTN MODO PRESIONADO
+	// ================================ //
+BTN_MODO_PRESS:
+
 	LDS		R16, MODO
 	CPI		R16, 9								// martener margen de 9 modos
 	BREQ	CAMBIO_MODO
 	INC		R16
 	STS		MODO, R16
-	RJMP	FIN1_ISR
+	RJMP	FIN_BTN_ISR
 
 CAMBIO_MODO:
 	LDI		R16, 1
 	STS		MODO, R16
+	RJMP	FIN_BTN_ISR
 
-FIN1_ISR:
+	// ================================ //
+	// BTN DECREMENTO PRESIONADO
+	// ================================ //
+BTN_DEC_PRESS:
+	
+	LDI		R16, 1
+	STS		BTN_DEC, R16
+	RJMP	FIN_BTN_ISR
+
+	// ================================ //
+	// BTN INCREMENTO PRESIONADO
+	// ================================ //
+BTN_INC_PRESS:
+
+	LDI		R16, 1
+	STS		BTN_INC, R16
+
+FIN_BTN_ISR:
 	POP		R16
 	OUT		SREG, R16							// Restaurar Status Register
 	POP		R17

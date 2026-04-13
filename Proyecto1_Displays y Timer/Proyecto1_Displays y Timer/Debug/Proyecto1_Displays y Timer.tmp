@@ -1,0 +1,188 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega328P"</DEVICE>
+ <WORKING_DIR>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc</FILE>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\M328PDEF.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\Debug\Proyecto1_Displays y Timer.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Proyecto1_Displays y Timer.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Proyecto1_Displays y Timer.map</FILE>
+  <FILE>Proyecto1_Displays y Timer.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <SEG_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>22</LINE></SEG_UNIDAD>
+  <SEG_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>23</LINE></SEG_DECENA>
+  <MIN_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>24</LINE></MIN_UNIDAD>
+  <MIN_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>25</LINE></MIN_DECENA>
+  <HRS_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>26</LINE></HRS_UNIDAD>
+  <HRS_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>27</LINE></HRS_DECENA>
+  <DIA_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>28</LINE></DIA_UNIDAD>
+  <DIA_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>29</LINE></DIA_DECENA>
+  <MES_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>30</LINE></MES_UNIDAD>
+  <MES_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>31</LINE></MES_DECENA>
+  <ANIO><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>32</LINE></ANIO>
+  <TEMP_MIN_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>34</LINE></TEMP_MIN_UNIDAD>
+  <TEMP_MIN_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>35</LINE></TEMP_MIN_DECENA>
+  <TEMP_HRS_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>36</LINE></TEMP_HRS_UNIDAD>
+  <TEMP_HRS_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>37</LINE></TEMP_HRS_DECENA>
+  <TEMP_MES_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>38</LINE></TEMP_MES_UNIDAD>
+  <TEMP_MES_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>39</LINE></TEMP_MES_DECENA>
+  <TEMP_DIA_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>40</LINE></TEMP_DIA_UNIDAD>
+  <TEMP_DIA_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>41</LINE></TEMP_DIA_DECENA>
+  <ALARMA_MIN_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>43</LINE></ALARMA_MIN_UNIDAD>
+  <ALARMA_MIN_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>44</LINE></ALARMA_MIN_DECENA>
+  <ALARMA_HRS_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>45</LINE></ALARMA_HRS_UNIDAD>
+  <ALARMA_HRS_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>46</LINE></ALARMA_HRS_DECENA>
+  <DISPLAY_ACTUAL><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>48</LINE></DISPLAY_ACTUAL>
+  <MODO><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>49</LINE></MODO>
+  <ALARMA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>51</LINE></ALARMA>
+  <ALARMA_MIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>52</LINE></ALARMA_MIN>
+  <ALARMA_HRS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>53</LINE></ALARMA_HRS>
+  <C_SEGUNDOS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>55</LINE></C_SEGUNDOS>
+  <PUNTITOS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>56</LINE></PUNTITOS>
+  <BTN_INC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>58</LINE></BTN_INC>
+  <BTN_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>59</LINE></BTN_DEC>
+  <GUARDAR_VALORES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>61</LINE></GUARDAR_VALORES>
+  <PILA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>81</LINE></PILA>
+  <BTN_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1218</LINE></BTN_ISR>
+  <TIM0_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1191</LINE></TIM0_ISR>
+  <SETUP><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>89</LINE></SETUP>
+  <IN_TIMER0><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>336</LINE></IN_TIMER0>
+  <MAIN_LOOP><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>184</LINE></MAIN_LOOP>
+  <VERIFICAR_1S><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>204</LINE></VERIFICAR_1S>
+  <DISPLAYSS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>217</LINE></DISPLAYSS>
+  <REFRESCAR_RELOJ1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>928</LINE></REFRESCAR_RELOJ1>
+  <DISPLAY_CORRESPONDIENTE><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>359</LINE></DISPLAY_CORRESPONDIENTE>
+  <REVISAR_M2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>233</LINE></REVISAR_M2>
+  <MOSTRAR_MODO1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>404</LINE></MOSTRAR_MODO1>
+  <MAIN_LOOP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>330</LINE></MAIN_LOOP1>
+  <REVISAR_M3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>241</LINE></REVISAR_M3>
+  <MOSTRAR_MODO2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>440</LINE></MOSTRAR_MODO2>
+  <REVISAR_M4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>249</LINE></REVISAR_M4>
+  <MOSTRAR_MODO3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>476</LINE></MOSTRAR_MODO3>
+  <REVISAR_M5><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>257</LINE></REVISAR_M5>
+  <MOSTRAR_MODO4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>512</LINE></MOSTRAR_MODO4>
+  <REVISAR_M6><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>265</LINE></REVISAR_M6>
+  <MOSTRAR_MODO5><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>633</LINE></MOSTRAR_MODO5>
+  <REVISAR_M7><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>273</LINE></REVISAR_M7>
+  <MOSTRAR_MODO6><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>722</LINE></MOSTRAR_MODO6>
+  <REVISAR_M8><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>281</LINE></REVISAR_M8>
+  <MOSTRAR_MODO7><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>812</LINE></MOSTRAR_MODO7>
+  <REVISAR_M9><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>289</LINE></REVISAR_M9>
+  <VERIFICAR2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>307</LINE></VERIFICAR2>
+  <VERIFICAR3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>314</LINE></VERIFICAR3>
+  <VERIFICAR4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>321</LINE></VERIFICAR4>
+  <ENCENDER_ALARMA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>328</LINE></ENCENDER_ALARMA>
+  <UNIDADES1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>378</LINE></UNIDADES1>
+  <DECENAS1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>385</LINE></DECENAS1>
+  <UNIDADES2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>391</LINE></UNIDADES2>
+  <FIN_DISPLAY_CORRESPONDIENTE><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>398</LINE></FIN_DISPLAY_CORRESPONDIENTE>
+  <M1_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>415</LINE></M1_DISP1>
+  <M1_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>420</LINE></M1_DISP2>
+  <M1_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>425</LINE></M1_DISP3>
+  <M1_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>430</LINE></M1_DISP4>
+  <ENVIAR_A_DISPLAY><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>899</LINE></ENVIAR_A_DISPLAY>
+  <M1_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>434</LINE></M1_FIN>
+  <M2_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>451</LINE></M2_DISP1>
+  <M2_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>456</LINE></M2_DISP2>
+  <M2_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>461</LINE></M2_DISP3>
+  <M2_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>466</LINE></M2_DISP4>
+  <M2_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>470</LINE></M2_FIN>
+  <M3_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>487</LINE></M3_DISP1>
+  <M3_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>492</LINE></M3_DISP2>
+  <M3_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>497</LINE></M3_DISP3>
+  <M3_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>502</LINE></M3_DISP4>
+  <M3_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>506</LINE></M3_FIN>
+  <M4_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>524</LINE></M4_DISP1>
+  <M4_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>529</LINE></M4_DISP2>
+  <M4_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>534</LINE></M4_DISP3>
+  <M4_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>539</LINE></M4_DISP4>
+  <M4_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>543</LINE></M4_FIN>
+  <SUMA_MINUTOS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>556</LINE></SUMA_MINUTOS>
+  <RESTA_MINUTOS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>582</LINE></RESTA_MINUTOS>
+  <NO_REINICIO41_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>574</LINE></NO_REINICIO41_UNIDAD>
+  <NO_REINICIO41_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>575</LINE></NO_REINICIO41_DECENA>
+  <M4_FIN2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>608</LINE></M4_FIN2>
+  <NO_UNDERFLOW1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>602</LINE></NO_UNDERFLOW1>
+  <NO_UNDERFLOW2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>603</LINE></NO_UNDERFLOW2>
+  <ACTUALIZAR_INFO_M4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>618</LINE></ACTUALIZAR_INFO_M4>
+  <M4_FIN3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>627</LINE></M4_FIN3>
+  <M5_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>645</LINE></M5_DISP1>
+  <M5_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>650</LINE></M5_DISP2>
+  <M5_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>655</LINE></M5_DISP3>
+  <M5_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>660</LINE></M5_DISP4>
+  <M5_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>664</LINE></M5_FIN>
+  <SUMA_HORAS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>677</LINE></SUMA_HORAS>
+  <RESTA_HORAS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>688</LINE></RESTA_HORAS>
+  <REFRESCAR_MODO5><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1125</LINE></REFRESCAR_MODO5>
+  <M5_FIN2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>697</LINE></M5_FIN2>
+  <ACTUALIZAR_INFO_M5><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>707</LINE></ACTUALIZAR_INFO_M5>
+  <M5_FIN3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>716</LINE></M5_FIN3>
+  <M6_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>735</LINE></M6_DISP1>
+  <M6_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>740</LINE></M6_DISP2>
+  <M6_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>745</LINE></M6_DISP3>
+  <M6_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>750</LINE></M6_DISP4>
+  <M6_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>754</LINE></M6_FIN>
+  <SUMA_MESES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>767</LINE></SUMA_MESES>
+  <RESTA_MESES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>778</LINE></RESTA_MESES>
+  <REFRESCAR_MODO6><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1128</LINE></REFRESCAR_MODO6>
+  <M6_FIN2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>787</LINE></M6_FIN2>
+  <ACTUALIZAR_INFO_M6><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>797</LINE></ACTUALIZAR_INFO_M6>
+  <M6_FIN3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>806</LINE></M6_FIN3>
+  <M7_DISP1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>825</LINE></M7_DISP1>
+  <M7_DISP2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>830</LINE></M7_DISP2>
+  <M7_DISP3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>835</LINE></M7_DISP3>
+  <M7_DISP4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>840</LINE></M7_DISP4>
+  <M7_FIN><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>844</LINE></M7_FIN>
+  <SUMA_DIAS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>857</LINE></SUMA_DIAS>
+  <RESTA_DIAS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>868</LINE></RESTA_DIAS>
+  <REFRESCAR_MODO7><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1131</LINE></REFRESCAR_MODO7>
+  <M7_FIN2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>877</LINE></M7_FIN2>
+  <ACTUALIZAR_INFO_M7><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>887</LINE></ACTUALIZAR_INFO_M7>
+  <M7_FIN3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>896</LINE></M7_FIN3>
+  <VECTOR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1340</LINE></VECTOR>
+  <REINICIO1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>940</LINE></REINICIO1>
+  <FIN_REFRESCAR_RELOJ><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1088</LINE></FIN_REFRESCAR_RELOJ>
+  <REINICIO2><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>954</LINE></REINICIO2>
+  <REINICIO3><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>968</LINE></REINICIO3>
+  <REINICIO4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>982</LINE></REINICIO4>
+  <INCREMENTAR_HRS_UNIDAD><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1008</LINE></INCREMENTAR_HRS_UNIDAD>
+  <INCREMENTAR_HRS_DECENA><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1001</LINE></INCREMENTAR_HRS_DECENA>
+  <REINICIO5><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1015</LINE></REINICIO5>
+  <OBTENER_DIAS_DEL_MES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1136</LINE></OBTENER_DIAS_DEL_MES>
+  <DIA_REINICIAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1048</LINE></DIA_REINICIAR>
+  <DES_FUSIONAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1172</LINE></DES_FUSIONAR>
+  <MES_REINICIAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1080</LINE></MES_REINICIAR>
+  <REFRESCAR_MODO4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1092</LINE></REFRESCAR_MODO4>
+  <REINICIO32><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1104</LINE></REINICIO32>
+  <FIN_REFRESCAR_MODO4><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1122</LINE></FIN_REFRESCAR_MODO4>
+  <REINICIO42><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1118</LINE></REINICIO42>
+  <DIAS_DEL_MES><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1353</LINE></DIAS_DEL_MES>
+  <DIVISION><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1177</LINE></DIVISION>
+  <FIN_DES_FUSIONAR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1186</LINE></FIN_DES_FUSIONAR>
+  <ACTUALIZAR1><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1209</LINE></ACTUALIZAR1>
+  <REVISAR_MODO><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1240</LINE></REVISAR_MODO>
+  <BTN_COMODIN_PRESS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1271</LINE></BTN_COMODIN_PRESS>
+  <REVISAR_INC_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1249</LINE></REVISAR_INC_DEC>
+  <BTN_MODO_PRESS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1298</LINE></BTN_MODO_PRESS>
+  <FIN_BTN_ISR><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1329</LINE></FIN_BTN_ISR>
+  <REVISAR_DEC><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1261</LINE></REVISAR_DEC>
+  <BTN_INC_PRESS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1324</LINE></BTN_INC_PRESS>
+  <BTN_DEC_PRESS><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1315</LINE></BTN_DEC_PRESS>
+  <VERIFICAR_GUARDADO><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1283</LINE></VERIFICAR_GUARDADO>
+  <CAMBIO_MODO><FILE>C:\Users\ayala\OneDrive\Documents\GitHub\1_ProgramacionMicrocontroladores\Proyecto1_Displays y Timer\Proyecto1_Displays y Timer\main.asm</FILE><LINE>1307</LINE></CAMBIO_MODO>
+ </LABELS>
+</ASSEMBLER_INFO>
