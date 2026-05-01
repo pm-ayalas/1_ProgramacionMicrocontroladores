@@ -1,0 +1,487 @@
+
+PostLab06_.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000007c  00800100  000002ac  00000320  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002ac  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000039c  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003cc  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000060  00000000  00000000  0000040c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000a73  00000000  00000000  0000046c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000079a  00000000  00000000  00000edf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000436  00000000  00000000  00001679  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000cc  00000000  00000000  00001ab0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000435  00000000  00000000  00001b7c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000020f  00000000  00000000  00001fb1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000050  00000000  00000000  000021c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ec ea       	ldi	r30, 0xAC	; 172
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	ac 37       	cpi	r26, 0x7C	; 124
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 f3 00 	call	0x1e6	; 0x1e6 <main>
+  8e:	0c 94 54 01 	jmp	0x2a8	; 0x2a8 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <setup>:
+/****************************************/
+// NON-Interrupt subroutines
+
+void setup(void) {
+    // SALIDAS = PB0-PB3 , PD4-PD7  
+    DDRB = 0x0F;     
+  96:	8f e0       	ldi	r24, 0x0F	; 15
+  98:	84 b9       	out	0x04, r24	; 4
+    DDRD = 0xF0;     
+  9a:	80 ef       	ldi	r24, 0xF0	; 240
+  9c:	8a b9       	out	0x0a, r24	; 10
+    
+    // LEDs apagados
+    PORTB = 0x00;
+  9e:	15 b8       	out	0x05, r1	; 5
+    PORTD = 0x00;
+  a0:	1b b8       	out	0x0b, r1	; 11
+  a2:	08 95       	ret
+
+000000a4 <UART_init>:
+}
+
+// 9600 Baud
+void UART_init(void) {
+    // UBRR = 103 -> 9600 baud - 16MHz
+    UBRR0H = 0;
+  a4:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7f80c5>
+    UBRR0L = 103;
+  a8:	87 e6       	ldi	r24, 0x67	; 103
+  aa:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7f80c4>
+    
+    // Habilitar transmisor y receptor (sin interrupción)
+    UCSR0B = (1 << TXEN0) | (1 << RXEN0);
+  ae:	88 e1       	ldi	r24, 0x18	; 24
+  b0:	80 93 c1 00 	sts	0x00C1, r24	; 0x8000c1 <__TEXT_REGION_LENGTH__+0x7f80c1>
+    
+    // FORMATO: 8 bits datos, 1 bit parada, sin paridad
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+  b4:	86 e0       	ldi	r24, 0x06	; 6
+  b6:	80 93 c2 00 	sts	0x00C2, r24	; 0x8000c2 <__TEXT_REGION_LENGTH__+0x7f80c2>
+  ba:	08 95       	ret
+
+000000bc <UART_enviar>:
+}
+
+void UART_enviar(char c) {
+    while (!(UCSR0A & (1 << UDRE0)));   // esperar buffer vacío
+  bc:	90 91 c0 00 	lds	r25, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+  c0:	95 ff       	sbrs	r25, 5
+  c2:	fc cf       	rjmp	.-8      	; 0xbc <UART_enviar>
+    UDR0 = c;
+  c4:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+  c8:	08 95       	ret
+
+000000ca <write_str>:
+}
+
+void write_str(char* texto) {
+  ca:	0f 93       	push	r16
+  cc:	1f 93       	push	r17
+  ce:	cf 93       	push	r28
+  d0:	8c 01       	movw	r16, r24
+    for(uint8_t i = 0; *(texto+i) != '\0'; i++) {
+  d2:	c0 e0       	ldi	r28, 0x00	; 0
+  d4:	03 c0       	rjmp	.+6      	; 0xdc <write_str+0x12>
+        UART_enviar(*(texto+i));
+  d6:	0e 94 5e 00 	call	0xbc	; 0xbc <UART_enviar>
+    while (!(UCSR0A & (1 << UDRE0)));   // esperar buffer vacío
+    UDR0 = c;
+}
+
+void write_str(char* texto) {
+    for(uint8_t i = 0; *(texto+i) != '\0'; i++) {
+  da:	cf 5f       	subi	r28, 0xFF	; 255
+  dc:	f8 01       	movw	r30, r16
+  de:	ec 0f       	add	r30, r28
+  e0:	f1 1d       	adc	r31, r1
+  e2:	80 81       	ld	r24, Z
+  e4:	81 11       	cpse	r24, r1
+  e6:	f7 cf       	rjmp	.-18     	; 0xd6 <write_str+0xc>
+        UART_enviar(*(texto+i));
+    }
+} 
+  e8:	cf 91       	pop	r28
+  ea:	1f 91       	pop	r17
+  ec:	0f 91       	pop	r16
+  ee:	08 95       	ret
+
+000000f0 <UART_recibir>:
+
+// Recibe un carácter [Código en pausa hasta recibir un dato]
+char UART_recibir(void) {
+    while (!(UCSR0A & (1 << RXC0)));   // esperar dato recibido (polling)
+  f0:	80 91 c0 00 	lds	r24, 0x00C0	; 0x8000c0 <__TEXT_REGION_LENGTH__+0x7f80c0>
+  f4:	88 23       	and	r24, r24
+  f6:	e4 f7       	brge	.-8      	; 0xf0 <UART_recibir>
+    return UDR0;
+  f8:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7f80c6>
+}
+  fc:	08 95       	ret
+
+000000fe <ADC_init>:
+
+// Inicializa ADC Ref AVcc, prescaler 128
+void ADC_init(void) {
+    ADMUX = (1 << REFS0);               // AVcc, canal 0 
+  fe:	80 e4       	ldi	r24, 0x40	; 64
+ 100:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
+    ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // habilitar, prescaler 128
+ 104:	87 e8       	ldi	r24, 0x87	; 135
+ 106:	80 93 7a 00 	sts	0x007A, r24	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 10a:	08 95       	ret
+
+0000010c <ADC_leer>:
+}
+
+// Lee el valor de 10 bits 
+uint16_t ADC_leer(uint8_t canal) {
+    ADMUX = (ADMUX & 0xF0) | (canal & 0x0F); // seleccionar canal
+ 10c:	ec e7       	ldi	r30, 0x7C	; 124
+ 10e:	f0 e0       	ldi	r31, 0x00	; 0
+ 110:	90 81       	ld	r25, Z
+ 112:	90 7f       	andi	r25, 0xF0	; 240
+ 114:	8f 70       	andi	r24, 0x0F	; 15
+ 116:	89 2b       	or	r24, r25
+ 118:	80 83       	st	Z, r24
+    ADCSRA |= (1 << ADSC);                   // iniciar conversión
+ 11a:	ea e7       	ldi	r30, 0x7A	; 122
+ 11c:	f0 e0       	ldi	r31, 0x00	; 0
+ 11e:	80 81       	ld	r24, Z
+ 120:	80 64       	ori	r24, 0x40	; 64
+ 122:	80 83       	st	Z, r24
+    while (ADCSRA & (1 << ADSC));            // esperar a que termine
+ 124:	80 91 7a 00 	lds	r24, 0x007A	; 0x80007a <__TEXT_REGION_LENGTH__+0x7f807a>
+ 128:	86 fd       	sbrc	r24, 6
+ 12a:	fc cf       	rjmp	.-8      	; 0x124 <ADC_leer+0x18>
+    return ADC;                              // devuelve el registro ADC (10 bits)
+ 12c:	80 91 78 00 	lds	r24, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+ 130:	90 91 79 00 	lds	r25, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+}
+ 134:	08 95       	ret
+
+00000136 <enviar_numero>:
+
+// Envía un número entero de 16 bits (0-65535) en decimal por UART
+void enviar_numero(uint16_t num) {
+ 136:	1f 93       	push	r17
+ 138:	cf 93       	push	r28
+ 13a:	df 93       	push	r29
+ 13c:	00 d0       	rcall	.+0      	; 0x13e <enviar_numero+0x8>
+ 13e:	00 d0       	rcall	.+0      	; 0x140 <enviar_numero+0xa>
+ 140:	00 d0       	rcall	.+0      	; 0x142 <enviar_numero+0xc>
+ 142:	cd b7       	in	r28, 0x3d	; 61
+ 144:	de b7       	in	r29, 0x3e	; 62
+ 146:	ac 01       	movw	r20, r24
+    char buffer[6];      // capacidad para 5 dígitos + terminador implícito
+    uint8_t idx = 0;
+    
+    if (num == 0) {
+ 148:	89 2b       	or	r24, r25
+ 14a:	91 f5       	brne	.+100    	; 0x1b0 <enviar_numero+0x7a>
+        UART_enviar('0');
+ 14c:	80 e3       	ldi	r24, 0x30	; 48
+ 14e:	0e 94 5e 00 	call	0xbc	; 0xbc <UART_enviar>
+ 152:	3f c0       	rjmp	.+126    	; 0x1d2 <enviar_numero+0x9c>
+        return;
+    }
+    
+    // Extraer dígitos de derecha a izquierda
+    while (num > 0) {
+        buffer[idx++] = '0' + (num % 10);
+ 154:	9a 01       	movw	r18, r20
+ 156:	ad ec       	ldi	r26, 0xCD	; 205
+ 158:	bc ec       	ldi	r27, 0xCC	; 204
+ 15a:	0e 94 45 01 	call	0x28a	; 0x28a <__umulhisi3>
+ 15e:	96 95       	lsr	r25
+ 160:	87 95       	ror	r24
+ 162:	96 95       	lsr	r25
+ 164:	87 95       	ror	r24
+ 166:	96 95       	lsr	r25
+ 168:	87 95       	ror	r24
+ 16a:	9c 01       	movw	r18, r24
+ 16c:	22 0f       	add	r18, r18
+ 16e:	33 1f       	adc	r19, r19
+ 170:	88 0f       	add	r24, r24
+ 172:	99 1f       	adc	r25, r25
+ 174:	88 0f       	add	r24, r24
+ 176:	99 1f       	adc	r25, r25
+ 178:	88 0f       	add	r24, r24
+ 17a:	99 1f       	adc	r25, r25
+ 17c:	82 0f       	add	r24, r18
+ 17e:	93 1f       	adc	r25, r19
+ 180:	9a 01       	movw	r18, r20
+ 182:	28 1b       	sub	r18, r24
+ 184:	39 0b       	sbc	r19, r25
+ 186:	c9 01       	movw	r24, r18
+ 188:	e1 e0       	ldi	r30, 0x01	; 1
+ 18a:	f0 e0       	ldi	r31, 0x00	; 0
+ 18c:	ec 0f       	add	r30, r28
+ 18e:	fd 1f       	adc	r31, r29
+ 190:	e1 0f       	add	r30, r17
+ 192:	f1 1d       	adc	r31, r1
+ 194:	80 5d       	subi	r24, 0xD0	; 208
+ 196:	80 83       	st	Z, r24
+        num /= 10;
+ 198:	9a 01       	movw	r18, r20
+ 19a:	0e 94 45 01 	call	0x28a	; 0x28a <__umulhisi3>
+ 19e:	ac 01       	movw	r20, r24
+ 1a0:	56 95       	lsr	r21
+ 1a2:	47 95       	ror	r20
+ 1a4:	56 95       	lsr	r21
+ 1a6:	47 95       	ror	r20
+ 1a8:	56 95       	lsr	r21
+ 1aa:	47 95       	ror	r20
+        return;
+    }
+    
+    // Extraer dígitos de derecha a izquierda
+    while (num > 0) {
+        buffer[idx++] = '0' + (num % 10);
+ 1ac:	1f 5f       	subi	r17, 0xFF	; 255
+ 1ae:	01 c0       	rjmp	.+2      	; 0x1b2 <enviar_numero+0x7c>
+ 1b0:	10 e0       	ldi	r17, 0x00	; 0
+        UART_enviar('0');
+        return;
+    }
+    
+    // Extraer dígitos de derecha a izquierda
+    while (num > 0) {
+ 1b2:	41 15       	cp	r20, r1
+ 1b4:	51 05       	cpc	r21, r1
+ 1b6:	71 f6       	brne	.-100    	; 0x154 <enviar_numero+0x1e>
+ 1b8:	0a c0       	rjmp	.+20     	; 0x1ce <enviar_numero+0x98>
+        num /= 10;
+    }
+    
+    // Enviar en orden inverso (del dígito más significativo al menos)
+    while (idx > 0) {
+        UART_enviar(buffer[--idx]);
+ 1ba:	11 50       	subi	r17, 0x01	; 1
+ 1bc:	e1 e0       	ldi	r30, 0x01	; 1
+ 1be:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c0:	ec 0f       	add	r30, r28
+ 1c2:	fd 1f       	adc	r31, r29
+ 1c4:	e1 0f       	add	r30, r17
+ 1c6:	f1 1d       	adc	r31, r1
+ 1c8:	80 81       	ld	r24, Z
+ 1ca:	0e 94 5e 00 	call	0xbc	; 0xbc <UART_enviar>
+        buffer[idx++] = '0' + (num % 10);
+        num /= 10;
+    }
+    
+    // Enviar en orden inverso (del dígito más significativo al menos)
+    while (idx > 0) {
+ 1ce:	11 11       	cpse	r17, r1
+ 1d0:	f4 cf       	rjmp	.-24     	; 0x1ba <enviar_numero+0x84>
+        UART_enviar(buffer[--idx]);
+    }
+}
+ 1d2:	26 96       	adiw	r28, 0x06	; 6
+ 1d4:	0f b6       	in	r0, 0x3f	; 63
+ 1d6:	f8 94       	cli
+ 1d8:	de bf       	out	0x3e, r29	; 62
+ 1da:	0f be       	out	0x3f, r0	; 63
+ 1dc:	cd bf       	out	0x3d, r28	; 61
+ 1de:	df 91       	pop	r29
+ 1e0:	cf 91       	pop	r28
+ 1e2:	1f 91       	pop	r17
+ 1e4:	08 95       	ret
+
+000001e6 <main>:
+
+/****************************************/
+// Main Function
+int main(void) {
+
+    setup();
+ 1e6:	0e 94 4b 00 	call	0x96	; 0x96 <setup>
+    UART_init();
+ 1ea:	0e 94 52 00 	call	0xa4	; 0xa4 <UART_init>
+    ADC_init();
+ 1ee:	0e 94 7f 00 	call	0xfe	; 0xfe <ADC_init>
+    
+    while (1) {
+        // Mostrar menú
+        write_str("\r\n*** MENU ***\r\n");
+ 1f2:	80 e0       	ldi	r24, 0x00	; 0
+ 1f4:	91 e0       	ldi	r25, 0x01	; 1
+ 1f6:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+        write_str("1) Leer Potenciometro\r\n");
+ 1fa:	81 e1       	ldi	r24, 0x11	; 17
+ 1fc:	91 e0       	ldi	r25, 0x01	; 1
+ 1fe:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+        write_str("2) Enviar Ascii\r\n");
+ 202:	89 e2       	ldi	r24, 0x29	; 41
+ 204:	91 e0       	ldi	r25, 0x01	; 1
+ 206:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+        write_str("Opcion: ");
+ 20a:	8b e3       	ldi	r24, 0x3B	; 59
+ 20c:	91 e0       	ldi	r25, 0x01	; 1
+ 20e:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+        
+        char opcion = UART_recibir();   // esperar un carácter
+ 212:	0e 94 78 00 	call	0xf0	; 0xf0 <UART_recibir>
+ 216:	c8 2f       	mov	r28, r24
+        UART_enviar(opcion);             // eco
+ 218:	0e 94 5e 00 	call	0xbc	; 0xbc <UART_enviar>
+        write_str("\r\n");
+ 21c:	8e e0       	ldi	r24, 0x0E	; 14
+ 21e:	91 e0       	ldi	r25, 0x01	; 1
+ 220:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+        
+        if (opcion == '1') {
+ 224:	c1 33       	cpi	r28, 0x31	; 49
+ 226:	71 f4       	brne	.+28     	; 0x244 <main+0x5e>
+            write_str("Valor ADC: ");
+ 228:	84 e4       	ldi	r24, 0x44	; 68
+ 22a:	91 e0       	ldi	r25, 0x01	; 1
+ 22c:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+            uint16_t valor = ADC_leer(0);    // Potenciometro (PC0)
+ 230:	80 e0       	ldi	r24, 0x00	; 0
+ 232:	0e 94 86 00 	call	0x10c	; 0x10c <ADC_leer>
+            enviar_numero(valor);
+ 236:	0e 94 9b 00 	call	0x136	; 0x136 <enviar_numero>
+            write_str("\r\n");
+ 23a:	8e e0       	ldi	r24, 0x0E	; 14
+ 23c:	91 e0       	ldi	r25, 0x01	; 1
+ 23e:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+ 242:	19 c0       	rjmp	.+50     	; 0x276 <main+0x90>
+        }
+        else if (opcion == '2') {
+ 244:	c2 33       	cpi	r28, 0x32	; 50
+ 246:	99 f4       	brne	.+38     	; 0x26e <main+0x88>
+            write_str("Ingrese un caracter: ");
+ 248:	80 e5       	ldi	r24, 0x50	; 80
+ 24a:	91 e0       	ldi	r25, 0x01	; 1
+ 24c:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+            char c = UART_recibir();
+ 250:	0e 94 78 00 	call	0xf0	; 0xf0 <UART_recibir>
+ 254:	c8 2f       	mov	r28, r24
+            UART_enviar(c);                // eco
+ 256:	0e 94 5e 00 	call	0xbc	; 0xbc <UART_enviar>
+            write_str("\r\n");
+ 25a:	8e e0       	ldi	r24, 0x0E	; 14
+ 25c:	91 e0       	ldi	r25, 0x01	; 1
+ 25e:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+            // Mostrar en los LEDs (nibble bajo en PORTB, nibble alto en PORTD)
+            PORTB = c & 0x0F;              // bits 0-3
+ 262:	8c 2f       	mov	r24, r28
+ 264:	8f 70       	andi	r24, 0x0F	; 15
+ 266:	85 b9       	out	0x05, r24	; 5
+            PORTD = c & 0xF0;              // bits 4-7
+ 268:	c0 7f       	andi	r28, 0xF0	; 240
+ 26a:	cb b9       	out	0x0b, r28	; 11
+ 26c:	04 c0       	rjmp	.+8      	; 0x276 <main+0x90>
+        }
+        else {
+            write_str("Opcion invalida :c\r\n");
+ 26e:	86 e6       	ldi	r24, 0x66	; 102
+ 270:	91 e0       	ldi	r25, 0x01	; 1
+ 272:	0e 94 65 00 	call	0xca	; 0xca <write_str>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 276:	2f ef       	ldi	r18, 0xFF	; 255
+ 278:	81 ee       	ldi	r24, 0xE1	; 225
+ 27a:	94 e0       	ldi	r25, 0x04	; 4
+ 27c:	21 50       	subi	r18, 0x01	; 1
+ 27e:	80 40       	sbci	r24, 0x00	; 0
+ 280:	90 40       	sbci	r25, 0x00	; 0
+ 282:	e1 f7       	brne	.-8      	; 0x27c <main+0x96>
+ 284:	00 c0       	rjmp	.+0      	; 0x286 <main+0xa0>
+ 286:	00 00       	nop
+ 288:	b4 cf       	rjmp	.-152    	; 0x1f2 <main+0xc>
+
+0000028a <__umulhisi3>:
+ 28a:	a2 9f       	mul	r26, r18
+ 28c:	b0 01       	movw	r22, r0
+ 28e:	b3 9f       	mul	r27, r19
+ 290:	c0 01       	movw	r24, r0
+ 292:	a3 9f       	mul	r26, r19
+ 294:	70 0d       	add	r23, r0
+ 296:	81 1d       	adc	r24, r1
+ 298:	11 24       	eor	r1, r1
+ 29a:	91 1d       	adc	r25, r1
+ 29c:	b2 9f       	mul	r27, r18
+ 29e:	70 0d       	add	r23, r0
+ 2a0:	81 1d       	adc	r24, r1
+ 2a2:	11 24       	eor	r1, r1
+ 2a4:	91 1d       	adc	r25, r1
+ 2a6:	08 95       	ret
+
+000002a8 <_exit>:
+ 2a8:	f8 94       	cli
+
+000002aa <__stop_program>:
+ 2aa:	ff cf       	rjmp	.-2      	; 0x2aa <__stop_program>

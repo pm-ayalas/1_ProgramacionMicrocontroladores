@@ -3,31 +3,31 @@ PostLab05_.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  000003ba  2**0
+  0 .data         00000000  00800100  00800100  000003b4  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000346  00000000  00000000  00000074  2**1
+  1 .text         00000340  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000009  00800100  00800100  000003ba  2**0
+  2 .bss          00000009  00800100  00800100  000003b4  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003ba  2**0
+  3 .comment      00000030  00000000  00000000  000003b4  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003ec  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003e4  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000058  00000000  00000000  0000042c  2**0
+  5 .debug_aranges 00000058  00000000  00000000  00000424  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000007e8  00000000  00000000  00000484  2**0
+  6 .debug_info   000007e8  00000000  00000000  0000047c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000676  00000000  00000000  00000c6c  2**0
+  7 .debug_abbrev 00000676  00000000  00000000  00000c64  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000377  00000000  00000000  000012e2  2**0
+  8 .debug_line   00000370  00000000  00000000  000012da  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000f0  00000000  00000000  0000165c  2**2
+  9 .debug_frame  000000f0  00000000  00000000  0000164c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000003f3  00000000  00000000  0000174c  2**0
+ 10 .debug_str    000003ed  00000000  00000000  0000173c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000179  00000000  00000000  00001b3f  2**0
+ 11 .debug_loc    00000179  00000000  00000000  00001b29  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000048  00000000  00000000  00001cb8  2**0
+ 12 .debug_ranges 00000048  00000000  00000000  00001ca2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -49,12 +49,12 @@ Disassembly of section .text:
   34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
-  40:	0c 94 26 01 	jmp	0x24c	; 0x24c <__vector_16>
+  40:	0c 94 20 01 	jmp	0x240	; 0x240 <__vector_16>
   44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
-  54:	0c 94 ab 00 	jmp	0x156	; 0x156 <__vector_21>
+  54:	0c 94 a5 00 	jmp	0x14a	; 0x14a <__vector_21>
   58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
   60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
@@ -81,471 +81,469 @@ Disassembly of section .text:
   7e:	a9 30       	cpi	r26, 0x09	; 9
   80:	b2 07       	cpc	r27, r18
   82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
-  84:	0e 94 99 00 	call	0x132	; 0x132 <main>
-  88:	0c 94 a1 01 	jmp	0x342	; 0x342 <_exit>
+  84:	0e 94 93 00 	call	0x126	; 0x126 <main>
+  88:	0c 94 9e 01 	jmp	0x33c	; 0x33c <_exit>
 
 0000008c <__bad_interrupt>:
   8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000090 <setup>:
+// NON-Interrupt subroutines
 
 void setup(void)
 {
-    // Reducir la frecuencia del sistema a 2 MHz (prescaler = 8)
-    // Esta es la línea CLAVE que estaba en tu código original y que funcionaba.
-    CLKPR = (1 << CLKPCE);
-  90:	e1 e6       	ldi	r30, 0x61	; 97
-  92:	f0 e0       	ldi	r31, 0x00	; 0
-  94:	80 e8       	ldi	r24, 0x80	; 128
-  96:	80 83       	st	Z, r24
-    CLKPR = (1 << CLKPS1) | (1 << CLKPS0);  // divisor = 8
-  98:	83 e0       	ldi	r24, 0x03	; 3
-  9a:	80 83       	st	Z, r24
-
-    // Configurar pines de salida
-    DDRB |= (1 << PB1) | (1 << PB3);   // PB1 (servo1), PB3 (servo2)
-  9c:	84 b1       	in	r24, 0x04	; 4
-  9e:	8a 60       	ori	r24, 0x0A	; 10
-  a0:	84 b9       	out	0x04, r24	; 4
-    DDRD |= (1 << PD6);                // PD6 (LED)
-  a2:	8a b1       	in	r24, 0x0a	; 10
-  a4:	80 64       	ori	r24, 0x40	; 64
-  a6:	8a b9       	out	0x0a, r24	; 10
-    PORTB = 0x00;
-  a8:	15 b8       	out	0x05, r1	; 5
+    // Pines de salida
+    DDRB |= (1 << PB1) | (1 << PB3);   
+  90:	84 b1       	in	r24, 0x04	; 4
+  92:	8a 60       	ori	r24, 0x0A	; 10
+  94:	84 b9       	out	0x04, r24	; 4
+    DDRD |= (1 << PD6);                
+  96:	8a b1       	in	r24, 0x0a	; 10
+  98:	80 64       	ori	r24, 0x40	; 64
+  9a:	8a b9       	out	0x0a, r24	; 10
+    PORTB = 0x00;                      
+  9c:	15 b8       	out	0x05, r1	; 5
     PORTD = 0x00;
-  aa:	1b b8       	out	0x0b, r1	; 11
-  ac:	08 95       	ret
+  9e:	1b b8       	out	0x0b, r1	; 11
+  a0:	08 95       	ret
 
-000000ae <init_PWM1>:
+000000a2 <init_PWM1>:
 
-// Timer1: PWM para servo1 en PB1 (OC1A)
+// Timer1: PWM - servo1 (PB1)
 void init_PWM1(void)
 {
-    // Fast PWM, TOP = ICR1, salida no inversora en OC1A
+    // Fast PWM, TOP = ICR1, salida no inversora
     TCCR1A |= (1 << COM1A1) | (1 << WGM11);
-  ae:	e0 e8       	ldi	r30, 0x80	; 128
-  b0:	f0 e0       	ldi	r31, 0x00	; 0
-  b2:	80 81       	ld	r24, Z
-  b4:	82 68       	ori	r24, 0x82	; 130
-  b6:	80 83       	st	Z, r24
+  a2:	e0 e8       	ldi	r30, 0x80	; 128
+  a4:	f0 e0       	ldi	r31, 0x00	; 0
+  a6:	80 81       	ld	r24, Z
+  a8:	82 68       	ori	r24, 0x82	; 130
+  aa:	80 83       	st	Z, r24
     TCCR1B |= (1 << WGM12) | (1 << WGM13);
-  b8:	e1 e8       	ldi	r30, 0x81	; 129
-  ba:	f0 e0       	ldi	r31, 0x00	; 0
-  bc:	80 81       	ld	r24, Z
-  be:	88 61       	ori	r24, 0x18	; 24
-  c0:	80 83       	st	Z, r24
-    // Prescaler = 8 -> con reloj de 2 MHz, tick = 0.5 µs
-    TCCR1B |= (1 << CS11);
-  c2:	80 81       	ld	r24, Z
-  c4:	82 60       	ori	r24, 0x02	; 2
-  c6:	80 83       	st	Z, r24
-    ICR1 = 5000;          // Periodo = 5000 * 0.5 µs = 2.5 ms (valor que funcionaba)
-  c8:	88 e8       	ldi	r24, 0x88	; 136
-  ca:	93 e1       	ldi	r25, 0x13	; 19
-  cc:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
-  d0:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
-    OCR1A = 125;          // Pulso mínimo (125 * 0.5 µs = 62.5 µs)
-  d4:	8d e7       	ldi	r24, 0x7D	; 125
-  d6:	90 e0       	ldi	r25, 0x00	; 0
-  d8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
-  dc:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
-  e0:	08 95       	ret
+  ac:	e1 e8       	ldi	r30, 0x81	; 129
+  ae:	f0 e0       	ldi	r31, 0x00	; 0
+  b0:	80 81       	ld	r24, Z
+  b2:	88 61       	ori	r24, 0x18	; 24
+  b4:	80 83       	st	Z, r24
+    // Prescaler = 64 (16MHz) -> tick = 4 µs.
+    TCCR1B |= (1 << CS11) | (1 << CS10);  // prescaler 64
+  b6:	80 81       	ld	r24, Z
+  b8:	83 60       	ori	r24, 0x03	; 3
+  ba:	80 83       	st	Z, r24
+    ICR1 = 5000;      // 20ms
+  bc:	88 e8       	ldi	r24, 0x88	; 136
+  be:	93 e1       	ldi	r25, 0x13	; 19
+  c0:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7f8087>
+  c4:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7f8086>
+    OCR1A = 125;      // 0.5ms
+  c8:	8d e7       	ldi	r24, 0x7D	; 125
+  ca:	90 e0       	ldi	r25, 0x00	; 0
+  cc:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+  d0:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+  d4:	08 95       	ret
 
-000000e2 <init_PWM2>:
+000000d6 <init_PWM2>:
 }
 
-// Timer2: PWM para servo2 en PB3 (OC2A)
+// Timer2: PWM - servo2 (PB3)
 void init_PWM2(void)
 {
     TCCR2A = 0;
-  e2:	e0 eb       	ldi	r30, 0xB0	; 176
-  e4:	f0 e0       	ldi	r31, 0x00	; 0
-  e6:	10 82       	st	Z, r1
+  d6:	e0 eb       	ldi	r30, 0xB0	; 176
+  d8:	f0 e0       	ldi	r31, 0x00	; 0
+  da:	10 82       	st	Z, r1
     TCCR2B = 0;
-  e8:	a1 eb       	ldi	r26, 0xB1	; 177
-  ea:	b0 e0       	ldi	r27, 0x00	; 0
-  ec:	1c 92       	st	X, r1
-    // Fast PWM de 8 bits, no inversor en OC2A
+  dc:	a1 eb       	ldi	r26, 0xB1	; 177
+  de:	b0 e0       	ldi	r27, 0x00	; 0
+  e0:	1c 92       	st	X, r1
+    // Fast PWM (8 bits), no inversor en OC2A
     TCCR2A |= (1 << WGM20) | (1 << WGM21);
-  ee:	80 81       	ld	r24, Z
-  f0:	83 60       	ori	r24, 0x03	; 3
-  f2:	80 83       	st	Z, r24
+  e2:	80 81       	ld	r24, Z
+  e4:	83 60       	ori	r24, 0x03	; 3
+  e6:	80 83       	st	Z, r24
     TCCR2A |= (1 << COM2A1);
-  f4:	80 81       	ld	r24, Z
-  f6:	80 68       	ori	r24, 0x80	; 128
-  f8:	80 83       	st	Z, r24
-    // Prescaler = 64 -> con reloj de 2 MHz, tick = 32 µs
-    TCCR2B |= (1 << CS21) | (1 << CS20);
-  fa:	8c 91       	ld	r24, X
-  fc:	83 60       	ori	r24, 0x03	; 3
-  fe:	8c 93       	st	X, r24
-    OCR2A = 125;          // Pulso inicial (125 * 32 µs = 4 ms)
- 100:	8d e7       	ldi	r24, 0x7D	; 125
- 102:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
- 106:	08 95       	ret
+  e8:	80 81       	ld	r24, Z
+  ea:	80 68       	ori	r24, 0x80	; 128
+  ec:	80 83       	st	Z, r24
+    // Prescaler = 64 -> tick = 4 µs (igual que Timer1)
+    TCCR2B |= (1 << CS21) | (1 << CS20);  // prescaler 64
+  ee:	8c 91       	ld	r24, X
+  f0:	83 60       	ori	r24, 0x03	; 3
+  f2:	8c 93       	st	X, r24
+    OCR2A = 125;      // 0.5 ms
+  f4:	8d e7       	ldi	r24, 0x7D	; 125
+  f6:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+  fa:	08 95       	ret
 
-00000108 <init_ManualPWM>:
-
-// Timer0: PWM manual para el LED en PD6
+000000fc <init_ManualPWM>:
 void init_ManualPWM(void)
 {
-    // Modo normal (desbordamiento) para generar una interrupción periódica
-    TCCR0A = 0;
- 108:	14 bc       	out	0x24, r1	; 36
-    // Prescaler = 64 -> frecuencia de reloj Timer0 = 2 MHz / 64 = 31.25 kHz
-    // Desbordamiento cada 256 ticks -> frecuencia de interrupción = 31.25 kHz / 256 ? 122 Hz
-    TCCR0B |= (1 << CS01) | (1 << CS00);  // CS01=1, CS00=1 -> prescaler 64
- 10a:	85 b5       	in	r24, 0x25	; 37
- 10c:	83 60       	ori	r24, 0x03	; 3
- 10e:	85 bd       	out	0x25, r24	; 37
-    TIMSK0 |= (1 << TOIE0);   // Habilitar interrupción por desbordamiento (TOV0)
- 110:	ee e6       	ldi	r30, 0x6E	; 110
- 112:	f0 e0       	ldi	r31, 0x00	; 0
- 114:	80 81       	ld	r24, Z
- 116:	81 60       	ori	r24, 0x01	; 1
- 118:	80 83       	st	Z, r24
- 11a:	08 95       	ret
+    // Timer0, Modo normal
+    // 16 MHz / 64 = 250 kHz, tick = 4 µs.
+    // desbordamiento cada 256 * 4 µs = 1.024 ms 
+    TCCR0A = 0;                     // Modo normal
+  fc:	14 bc       	out	0x24, r1	; 36
+    TCCR0B |= (1 << CS01) | (1 << CS00);  // Prescaler 64
+  fe:	85 b5       	in	r24, 0x25	; 37
+ 100:	83 60       	ori	r24, 0x03	; 3
+ 102:	85 bd       	out	0x25, r24	; 37
+    TIMSK0 |= (1 << TOIE0);         // Habilitar interrupción
+ 104:	ee e6       	ldi	r30, 0x6E	; 110
+ 106:	f0 e0       	ldi	r31, 0x00	; 0
+ 108:	80 81       	ld	r24, Z
+ 10a:	81 60       	ori	r24, 0x01	; 1
+ 10c:	80 83       	st	Z, r24
+ 10e:	08 95       	ret
 
-0000011c <init_ADC>:
-
-// ADC: conversión continua de tres canales (PC0, PC1, PC2)
+00000110 <init_ADC>:
+// ADC (Lectura continua de los 3 canales)
 void init_ADC(void)
 {
-    // Referencia AVcc, canal 0 inicial
+    // Ref AVcc
+	// inicio en modo 0 
     ADMUX = (1 << REFS0);
- 11c:	80 e4       	ldi	r24, 0x40	; 64
- 11e:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
-    // Habilitar ADC, prescaler 128 -> reloj ADC = 2 MHz / 128 = 15.625 kHz
+ 110:	80 e4       	ldi	r24, 0x40	; 64
+ 112:	80 93 7c 00 	sts	0x007C, r24	; 0x80007c <__TEXT_REGION_LENGTH__+0x7f807c>
+    // Habilitar ADC
+	// prescaler 128 (125 kHz) 
     ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
- 122:	ea e7       	ldi	r30, 0x7A	; 122
- 124:	f0 e0       	ldi	r31, 0x00	; 0
- 126:	87 e8       	ldi	r24, 0x87	; 135
- 128:	80 83       	st	Z, r24
-    ADCSRA |= (1 << ADIE);   // Habilitar interrupción del ADC
- 12a:	80 81       	ld	r24, Z
- 12c:	88 60       	ori	r24, 0x08	; 8
- 12e:	80 83       	st	Z, r24
- 130:	08 95       	ret
+ 116:	ea e7       	ldi	r30, 0x7A	; 122
+ 118:	f0 e0       	ldi	r31, 0x00	; 0
+ 11a:	87 e8       	ldi	r24, 0x87	; 135
+ 11c:	80 83       	st	Z, r24
+    ADCSRA |= (1 << ADIE);   // interrupciones
+ 11e:	80 81       	ld	r24, Z
+ 120:	88 60       	ori	r24, 0x08	; 8
+ 122:	80 83       	st	Z, r24
+ 124:	08 95       	ret
 
-00000132 <main>:
+00000126 <main>:
 
 /****************************************/
 // Main Function
 int main(void)
 {
-    cli();               // Deshabilitar interrupciones durante configuración
- 132:	f8 94       	cli
+    cli();               // Deshabilitar interrupciones
+ 126:	f8 94       	cli
     setup();
- 134:	0e 94 48 00 	call	0x90	; 0x90 <setup>
+ 128:	0e 94 48 00 	call	0x90	; 0x90 <setup>
     init_PWM1();
- 138:	0e 94 57 00 	call	0xae	; 0xae <init_PWM1>
+ 12c:	0e 94 51 00 	call	0xa2	; 0xa2 <init_PWM1>
     init_PWM2();
- 13c:	0e 94 71 00 	call	0xe2	; 0xe2 <init_PWM2>
+ 130:	0e 94 6b 00 	call	0xd6	; 0xd6 <init_PWM2>
     init_ManualPWM();
- 140:	0e 94 84 00 	call	0x108	; 0x108 <init_ManualPWM>
+ 134:	0e 94 7e 00 	call	0xfc	; 0xfc <init_ManualPWM>
     init_ADC();
- 144:	0e 94 8e 00 	call	0x11c	; 0x11c <init_ADC>
-    sei();               // Habilitar interrupciones globales
- 148:	78 94       	sei
-    ADCSRA |= (1 << ADSC); // Iniciar primera conversión ADC
- 14a:	ea e7       	ldi	r30, 0x7A	; 122
- 14c:	f0 e0       	ldi	r31, 0x00	; 0
- 14e:	80 81       	ld	r24, Z
- 150:	80 64       	ori	r24, 0x40	; 64
- 152:	80 83       	st	Z, r24
- 154:	ff cf       	rjmp	.-2      	; 0x154 <main+0x22>
+ 138:	0e 94 88 00 	call	0x110	; 0x110 <init_ADC>
+    sei();               // Habilitar interrupciones 
+ 13c:	78 94       	sei
+    ADCSRA |= (1 << ADSC); // primera conversión 
+ 13e:	ea e7       	ldi	r30, 0x7A	; 122
+ 140:	f0 e0       	ldi	r31, 0x00	; 0
+ 142:	80 81       	ld	r24, Z
+ 144:	80 64       	ori	r24, 0x40	; 64
+ 146:	80 83       	st	Z, r24
+ 148:	ff cf       	rjmp	.-2      	; 0x148 <main+0x22>
 
-00000156 <__vector_21>:
-/****************************************/
+0000014a <__vector_21>:
 // Interrupt routines
 
-// Interrupción del ADC: se ejecuta al final de cada conversión
+// ADC
+// Luego de finalizar cada conversión
 ISR(ADC_vect)
 {
- 156:	1f 92       	push	r1
- 158:	0f 92       	push	r0
- 15a:	0f b6       	in	r0, 0x3f	; 63
- 15c:	0f 92       	push	r0
- 15e:	11 24       	eor	r1, r1
- 160:	2f 93       	push	r18
- 162:	3f 93       	push	r19
- 164:	4f 93       	push	r20
- 166:	5f 93       	push	r21
- 168:	6f 93       	push	r22
- 16a:	7f 93       	push	r23
- 16c:	8f 93       	push	r24
- 16e:	9f 93       	push	r25
- 170:	af 93       	push	r26
- 172:	bf 93       	push	r27
- 174:	ef 93       	push	r30
- 176:	ff 93       	push	r31
-    uint16_t valor = ADC;   // resultado de 10 bits
- 178:	20 91 78 00 	lds	r18, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
- 17c:	30 91 79 00 	lds	r19, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
+ 14a:	1f 92       	push	r1
+ 14c:	0f 92       	push	r0
+ 14e:	0f b6       	in	r0, 0x3f	; 63
+ 150:	0f 92       	push	r0
+ 152:	11 24       	eor	r1, r1
+ 154:	2f 93       	push	r18
+ 156:	3f 93       	push	r19
+ 158:	4f 93       	push	r20
+ 15a:	5f 93       	push	r21
+ 15c:	6f 93       	push	r22
+ 15e:	7f 93       	push	r23
+ 160:	8f 93       	push	r24
+ 162:	9f 93       	push	r25
+ 164:	af 93       	push	r26
+ 166:	bf 93       	push	r27
+ 168:	ef 93       	push	r30
+ 16a:	ff 93       	push	r31
+    uint16_t VALOR = ADC;   // resultados 10 bits
+ 16c:	20 91 78 00 	lds	r18, 0x0078	; 0x800078 <__TEXT_REGION_LENGTH__+0x7f8078>
+ 170:	30 91 79 00 	lds	r19, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7f8079>
 
-    switch (channel)
- 180:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <channel>
- 184:	81 30       	cpi	r24, 0x01	; 1
- 186:	c9 f0       	breq	.+50     	; 0x1ba <__vector_21+0x64>
- 188:	18 f0       	brcs	.+6      	; 0x190 <__vector_21+0x3a>
- 18a:	82 30       	cpi	r24, 0x02	; 2
- 18c:	39 f1       	breq	.+78     	; 0x1dc <__vector_21+0x86>
- 18e:	36 c0       	rjmp	.+108    	; 0x1fc <__vector_21+0xa6>
+    switch (modo)
+ 174:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <modo>
+ 178:	81 30       	cpi	r24, 0x01	; 1
+ 17a:	c9 f0       	breq	.+50     	; 0x1ae <__vector_21+0x64>
+ 17c:	18 f0       	brcs	.+6      	; 0x184 <__vector_21+0x3a>
+ 17e:	82 30       	cpi	r24, 0x02	; 2
+ 180:	39 f1       	breq	.+78     	; 0x1d0 <__vector_21+0x86>
+ 182:	36 c0       	rjmp	.+108    	; 0x1f0 <__vector_21+0xa6>
     {
-        case 0:  // Canal PC0 -> servo1
-            adc0 = valor;
- 190:	30 93 08 01 	sts	0x0108, r19	; 0x800108 <adc0+0x1>
- 194:	20 93 07 01 	sts	0x0107, r18	; 0x800107 <adc0>
-            // Mapeo de 0-1023 a 125-625 (exactamente el mismo cálculo que en el original)
-            OCR1A = 125 + ((uint32_t)valor * 500) / 1023;
- 198:	a4 ef       	ldi	r26, 0xF4	; 244
- 19a:	b1 e0       	ldi	r27, 0x01	; 1
- 19c:	0e 94 7e 01 	call	0x2fc	; 0x2fc <__umulhisi3>
- 1a0:	2f ef       	ldi	r18, 0xFF	; 255
- 1a2:	33 e0       	ldi	r19, 0x03	; 3
- 1a4:	40 e0       	ldi	r20, 0x00	; 0
- 1a6:	50 e0       	ldi	r21, 0x00	; 0
- 1a8:	0e 94 5c 01 	call	0x2b8	; 0x2b8 <__udivmodsi4>
- 1ac:	23 58       	subi	r18, 0x83	; 131
- 1ae:	3f 4f       	sbci	r19, 0xFF	; 255
- 1b0:	30 93 89 00 	sts	0x0089, r19	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
- 1b4:	20 93 88 00 	sts	0x0088, r18	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+        case 0:
+            ADC0 = VALOR;
+ 184:	30 93 08 01 	sts	0x0108, r19	; 0x800108 <ADC0+0x1>
+ 188:	20 93 07 01 	sts	0x0107, r18	; 0x800107 <ADC0>
+            // Mapeo  (0-1023) a (125-625) --> (0.5 ms - 2.5 ms) SERVO1
+            OCR1A = 125 + ((uint32_t)VALOR * 500) / 1023;
+ 18c:	a4 ef       	ldi	r26, 0xF4	; 244
+ 18e:	b1 e0       	ldi	r27, 0x01	; 1
+ 190:	0e 94 7b 01 	call	0x2f6	; 0x2f6 <__umulhisi3>
+ 194:	2f ef       	ldi	r18, 0xFF	; 255
+ 196:	33 e0       	ldi	r19, 0x03	; 3
+ 198:	40 e0       	ldi	r20, 0x00	; 0
+ 19a:	50 e0       	ldi	r21, 0x00	; 0
+ 19c:	0e 94 59 01 	call	0x2b2	; 0x2b2 <__udivmodsi4>
+ 1a0:	23 58       	subi	r18, 0x83	; 131
+ 1a2:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1a4:	30 93 89 00 	sts	0x0089, r19	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 1a8:	20 93 88 00 	sts	0x0088, r18	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
             break;
- 1b8:	21 c0       	rjmp	.+66     	; 0x1fc <__vector_21+0xa6>
-        case 1:  // Canal PC1 -> servo2
-            adc1 = valor;
- 1ba:	30 93 06 01 	sts	0x0106, r19	; 0x800106 <adc1+0x1>
- 1be:	20 93 05 01 	sts	0x0105, r18	; 0x800105 <adc1>
-            // Mapeo de 0-1023 a 0-255 (igual que en el original)
-            OCR2A = ((uint32_t)valor * 255) / 1023;
- 1c2:	af ef       	ldi	r26, 0xFF	; 255
- 1c4:	b0 e0       	ldi	r27, 0x00	; 0
- 1c6:	0e 94 7e 01 	call	0x2fc	; 0x2fc <__umulhisi3>
- 1ca:	2f ef       	ldi	r18, 0xFF	; 255
- 1cc:	33 e0       	ldi	r19, 0x03	; 3
- 1ce:	40 e0       	ldi	r20, 0x00	; 0
- 1d0:	50 e0       	ldi	r21, 0x00	; 0
- 1d2:	0e 94 5c 01 	call	0x2b8	; 0x2b8 <__udivmodsi4>
- 1d6:	20 93 b3 00 	sts	0x00B3, r18	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
+ 1ac:	21 c0       	rjmp	.+66     	; 0x1f0 <__vector_21+0xa6>
+        case 1:
+            ADC1 = VALOR;
+ 1ae:	30 93 06 01 	sts	0x0106, r19	; 0x800106 <ADC1+0x1>
+ 1b2:	20 93 05 01 	sts	0x0105, r18	; 0x800105 <ADC1>
+            // Mapeo (0-1023) a (0-255) --> (0-1.02 ms) SERVO2
+            OCR2A = ((uint32_t)VALOR * 255) / 1023;
+ 1b6:	af ef       	ldi	r26, 0xFF	; 255
+ 1b8:	b0 e0       	ldi	r27, 0x00	; 0
+ 1ba:	0e 94 7b 01 	call	0x2f6	; 0x2f6 <__umulhisi3>
+ 1be:	2f ef       	ldi	r18, 0xFF	; 255
+ 1c0:	33 e0       	ldi	r19, 0x03	; 3
+ 1c2:	40 e0       	ldi	r20, 0x00	; 0
+ 1c4:	50 e0       	ldi	r21, 0x00	; 0
+ 1c6:	0e 94 59 01 	call	0x2b2	; 0x2b2 <__udivmodsi4>
+ 1ca:	20 93 b3 00 	sts	0x00B3, r18	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7f80b3>
             break;
- 1da:	10 c0       	rjmp	.+32     	; 0x1fc <__vector_21+0xa6>
-        case 2:  // Canal PC2 -> LED (PWM manual)
-            adc2 = valor;
- 1dc:	30 93 04 01 	sts	0x0104, r19	; 0x800104 <adc2+0x1>
- 1e0:	20 93 03 01 	sts	0x0103, r18	; 0x800103 <adc2>
-            // Mapeo de 0-1023 a 0-255 para el ciclo de trabajo del LED
-            led_duty = ((uint32_t)valor * 255) / 1023;
- 1e4:	af ef       	ldi	r26, 0xFF	; 255
- 1e6:	b0 e0       	ldi	r27, 0x00	; 0
- 1e8:	0e 94 7e 01 	call	0x2fc	; 0x2fc <__umulhisi3>
- 1ec:	2f ef       	ldi	r18, 0xFF	; 255
- 1ee:	33 e0       	ldi	r19, 0x03	; 3
- 1f0:	40 e0       	ldi	r20, 0x00	; 0
- 1f2:	50 e0       	ldi	r21, 0x00	; 0
- 1f4:	0e 94 5c 01 	call	0x2b8	; 0x2b8 <__udivmodsi4>
- 1f8:	20 93 01 01 	sts	0x0101, r18	; 0x800101 <led_duty>
+ 1ce:	10 c0       	rjmp	.+32     	; 0x1f0 <__vector_21+0xa6>
+        case 2:
+            ADC2 = VALOR;
+ 1d0:	30 93 04 01 	sts	0x0104, r19	; 0x800104 <ADC2+0x1>
+ 1d4:	20 93 03 01 	sts	0x0103, r18	; 0x800103 <ADC2>
+            // Mapeo (0-1023) a (0-255) --> ciclo de trabajo del LED
+            led_duty = ((uint32_t)VALOR * 255) / 1023;
+ 1d8:	af ef       	ldi	r26, 0xFF	; 255
+ 1da:	b0 e0       	ldi	r27, 0x00	; 0
+ 1dc:	0e 94 7b 01 	call	0x2f6	; 0x2f6 <__umulhisi3>
+ 1e0:	2f ef       	ldi	r18, 0xFF	; 255
+ 1e2:	33 e0       	ldi	r19, 0x03	; 3
+ 1e4:	40 e0       	ldi	r20, 0x00	; 0
+ 1e6:	50 e0       	ldi	r21, 0x00	; 0
+ 1e8:	0e 94 59 01 	call	0x2b2	; 0x2b2 <__udivmodsi4>
+ 1ec:	20 93 01 01 	sts	0x0101, r18	; 0x800101 <led_duty>
             break;
     }
 
-    // Avanzar al siguiente canal (0 -> 1 -> 2 -> 0 ...)
-    channel = (channel + 1) % 3;
- 1fc:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <channel>
- 200:	90 e0       	ldi	r25, 0x00	; 0
- 202:	01 96       	adiw	r24, 0x01	; 1
- 204:	63 e0       	ldi	r22, 0x03	; 3
- 206:	70 e0       	ldi	r23, 0x00	; 0
- 208:	0e 94 48 01 	call	0x290	; 0x290 <__divmodhi4>
- 20c:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <channel>
-    ADMUX = (ADMUX & 0xF0) | channel;   // Cambiar el multiplexor del ADC
- 210:	ec e7       	ldi	r30, 0x7C	; 124
- 212:	f0 e0       	ldi	r31, 0x00	; 0
- 214:	80 81       	ld	r24, Z
- 216:	90 91 02 01 	lds	r25, 0x0102	; 0x800102 <channel>
- 21a:	80 7f       	andi	r24, 0xF0	; 240
- 21c:	89 2b       	or	r24, r25
- 21e:	80 83       	st	Z, r24
-    ADCSRA |= (1 << ADSC);              // Iniciar la siguiente conversión
- 220:	ea e7       	ldi	r30, 0x7A	; 122
- 222:	f0 e0       	ldi	r31, 0x00	; 0
- 224:	80 81       	ld	r24, Z
- 226:	80 64       	ori	r24, 0x40	; 64
- 228:	80 83       	st	Z, r24
+    // Cambio de modo
+    modo = (modo + 1) % 3;
+ 1f0:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <modo>
+ 1f4:	90 e0       	ldi	r25, 0x00	; 0
+ 1f6:	01 96       	adiw	r24, 0x01	; 1
+ 1f8:	63 e0       	ldi	r22, 0x03	; 3
+ 1fa:	70 e0       	ldi	r23, 0x00	; 0
+ 1fc:	0e 94 45 01 	call	0x28a	; 0x28a <__divmodhi4>
+ 200:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <modo>
+    ADMUX = (ADMUX & 0xF0) | modo;		// Cambiar multiplexor del ADC
+ 204:	ec e7       	ldi	r30, 0x7C	; 124
+ 206:	f0 e0       	ldi	r31, 0x00	; 0
+ 208:	80 81       	ld	r24, Z
+ 20a:	90 91 02 01 	lds	r25, 0x0102	; 0x800102 <modo>
+ 20e:	80 7f       	andi	r24, 0xF0	; 240
+ 210:	89 2b       	or	r24, r25
+ 212:	80 83       	st	Z, r24
+    ADCSRA |= (1 << ADSC);				// Iniciar la siguiente conversión
+ 214:	ea e7       	ldi	r30, 0x7A	; 122
+ 216:	f0 e0       	ldi	r31, 0x00	; 0
+ 218:	80 81       	ld	r24, Z
+ 21a:	80 64       	ori	r24, 0x40	; 64
+ 21c:	80 83       	st	Z, r24
 }
- 22a:	ff 91       	pop	r31
- 22c:	ef 91       	pop	r30
- 22e:	bf 91       	pop	r27
- 230:	af 91       	pop	r26
- 232:	9f 91       	pop	r25
- 234:	8f 91       	pop	r24
- 236:	7f 91       	pop	r23
- 238:	6f 91       	pop	r22
- 23a:	5f 91       	pop	r21
- 23c:	4f 91       	pop	r20
- 23e:	3f 91       	pop	r19
- 240:	2f 91       	pop	r18
- 242:	0f 90       	pop	r0
- 244:	0f be       	out	0x3f, r0	; 63
- 246:	0f 90       	pop	r0
- 248:	1f 90       	pop	r1
- 24a:	18 95       	reti
+ 21e:	ff 91       	pop	r31
+ 220:	ef 91       	pop	r30
+ 222:	bf 91       	pop	r27
+ 224:	af 91       	pop	r26
+ 226:	9f 91       	pop	r25
+ 228:	8f 91       	pop	r24
+ 22a:	7f 91       	pop	r23
+ 22c:	6f 91       	pop	r22
+ 22e:	5f 91       	pop	r21
+ 230:	4f 91       	pop	r20
+ 232:	3f 91       	pop	r19
+ 234:	2f 91       	pop	r18
+ 236:	0f 90       	pop	r0
+ 238:	0f be       	out	0x3f, r0	; 63
+ 23a:	0f 90       	pop	r0
+ 23c:	1f 90       	pop	r1
+ 23e:	18 95       	reti
 
-0000024c <__vector_16>:
+00000240 <__vector_16>:
 
-// Interrupción por desbordamiento del Timer0: genera el PWM manual en PD6
+// Interrupción Timer0 (PWM manual) 
 ISR(TIMER0_OVF_vect)
 {
- 24c:	1f 92       	push	r1
- 24e:	0f 92       	push	r0
- 250:	0f b6       	in	r0, 0x3f	; 63
- 252:	0f 92       	push	r0
- 254:	11 24       	eor	r1, r1
- 256:	8f 93       	push	r24
- 258:	9f 93       	push	r25
-    // Incrementar el contador (0 a 255)
-    pwm_counter++;
- 25a:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 25e:	8f 5f       	subi	r24, 0xFF	; 255
- 260:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
-    if (pwm_counter >= 256) pwm_counter = 0;
- 264:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 240:	1f 92       	push	r1
+ 242:	0f 92       	push	r0
+ 244:	0f b6       	in	r0, 0x3f	; 63
+ 246:	0f 92       	push	r0
+ 248:	11 24       	eor	r1, r1
+ 24a:	8f 93       	push	r24
+ 24c:	9f 93       	push	r25
+    // Al inicio del ciclo (CONTADOR == 0) entonces = pin en alto
+    if (CONTADOR == 0)
+ 24e:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 252:	81 11       	cpse	r24, r1
+ 254:	03 c0       	rjmp	.+6      	; 0x25c <__vector_16+0x1c>
+    {
+        PORTD |= (1 << PD6);
+ 256:	8b b1       	in	r24, 0x0b	; 11
+ 258:	80 64       	ori	r24, 0x40	; 64
+ 25a:	8b b9       	out	0x0b, r24	; 11
+    }
+    CONTADOR++;
+ 25c:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 260:	8f 5f       	subi	r24, 0xFF	; 255
+ 262:	80 93 00 01 	sts	0x0100, r24	; 0x800100 <__DATA_REGION_ORIGIN__>
+    if (CONTADOR >= 256)
+ 266:	80 91 00 01 	lds	r24, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+    {
+        CONTADOR = 0;
+    }
+    // Cuando el contador alcanza el valor de duty, se apaga el led
+    if (CONTADOR == led_duty)
+ 26a:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+ 26e:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <led_duty>
+ 272:	98 13       	cpse	r25, r24
+ 274:	03 c0       	rjmp	.+6      	; 0x27c <__vector_16+0x3c>
+    {
+        PORTD &= ~(1 << PD6);
+ 276:	8b b1       	in	r24, 0x0b	; 11
+ 278:	8f 7b       	andi	r24, 0xBF	; 191
+ 27a:	8b b9       	out	0x0b, r24	; 11
+    }
+}
+ 27c:	9f 91       	pop	r25
+ 27e:	8f 91       	pop	r24
+ 280:	0f 90       	pop	r0
+ 282:	0f be       	out	0x3f, r0	; 63
+ 284:	0f 90       	pop	r0
+ 286:	1f 90       	pop	r1
+ 288:	18 95       	reti
 
-    // Lógica PWM estándar: el pin se pone en alto mientras el contador sea menor que el duty
-    if (pwm_counter < led_duty)
- 268:	90 91 00 01 	lds	r25, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
- 26c:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <led_duty>
- 270:	98 17       	cp	r25, r24
- 272:	20 f4       	brcc	.+8      	; 0x27c <__vector_16+0x30>
-        PORTD |= (1 << PD6);    // LED encendido
- 274:	8b b1       	in	r24, 0x0b	; 11
- 276:	80 64       	ori	r24, 0x40	; 64
- 278:	8b b9       	out	0x0b, r24	; 11
- 27a:	03 c0       	rjmp	.+6      	; 0x282 <__vector_16+0x36>
-    else
-        PORTD &= ~(1 << PD6);   // LED apagado
- 27c:	8b b1       	in	r24, 0x0b	; 11
- 27e:	8f 7b       	andi	r24, 0xBF	; 191
- 280:	8b b9       	out	0x0b, r24	; 11
- 282:	9f 91       	pop	r25
- 284:	8f 91       	pop	r24
- 286:	0f 90       	pop	r0
- 288:	0f be       	out	0x3f, r0	; 63
- 28a:	0f 90       	pop	r0
- 28c:	1f 90       	pop	r1
- 28e:	18 95       	reti
+0000028a <__divmodhi4>:
+ 28a:	97 fb       	bst	r25, 7
+ 28c:	07 2e       	mov	r0, r23
+ 28e:	16 f4       	brtc	.+4      	; 0x294 <__divmodhi4+0xa>
+ 290:	00 94       	com	r0
+ 292:	07 d0       	rcall	.+14     	; 0x2a2 <__divmodhi4_neg1>
+ 294:	77 fd       	sbrc	r23, 7
+ 296:	09 d0       	rcall	.+18     	; 0x2aa <__divmodhi4_neg2>
+ 298:	0e 94 8a 01 	call	0x314	; 0x314 <__udivmodhi4>
+ 29c:	07 fc       	sbrc	r0, 7
+ 29e:	05 d0       	rcall	.+10     	; 0x2aa <__divmodhi4_neg2>
+ 2a0:	3e f4       	brtc	.+14     	; 0x2b0 <__divmodhi4_exit>
 
-00000290 <__divmodhi4>:
- 290:	97 fb       	bst	r25, 7
- 292:	07 2e       	mov	r0, r23
- 294:	16 f4       	brtc	.+4      	; 0x29a <__divmodhi4+0xa>
- 296:	00 94       	com	r0
- 298:	07 d0       	rcall	.+14     	; 0x2a8 <__divmodhi4_neg1>
- 29a:	77 fd       	sbrc	r23, 7
- 29c:	09 d0       	rcall	.+18     	; 0x2b0 <__divmodhi4_neg2>
- 29e:	0e 94 8d 01 	call	0x31a	; 0x31a <__udivmodhi4>
- 2a2:	07 fc       	sbrc	r0, 7
- 2a4:	05 d0       	rcall	.+10     	; 0x2b0 <__divmodhi4_neg2>
- 2a6:	3e f4       	brtc	.+14     	; 0x2b6 <__divmodhi4_exit>
+000002a2 <__divmodhi4_neg1>:
+ 2a2:	90 95       	com	r25
+ 2a4:	81 95       	neg	r24
+ 2a6:	9f 4f       	sbci	r25, 0xFF	; 255
+ 2a8:	08 95       	ret
 
-000002a8 <__divmodhi4_neg1>:
- 2a8:	90 95       	com	r25
- 2aa:	81 95       	neg	r24
- 2ac:	9f 4f       	sbci	r25, 0xFF	; 255
- 2ae:	08 95       	ret
+000002aa <__divmodhi4_neg2>:
+ 2aa:	70 95       	com	r23
+ 2ac:	61 95       	neg	r22
+ 2ae:	7f 4f       	sbci	r23, 0xFF	; 255
 
-000002b0 <__divmodhi4_neg2>:
- 2b0:	70 95       	com	r23
- 2b2:	61 95       	neg	r22
- 2b4:	7f 4f       	sbci	r23, 0xFF	; 255
+000002b0 <__divmodhi4_exit>:
+ 2b0:	08 95       	ret
 
-000002b6 <__divmodhi4_exit>:
- 2b6:	08 95       	ret
+000002b2 <__udivmodsi4>:
+ 2b2:	a1 e2       	ldi	r26, 0x21	; 33
+ 2b4:	1a 2e       	mov	r1, r26
+ 2b6:	aa 1b       	sub	r26, r26
+ 2b8:	bb 1b       	sub	r27, r27
+ 2ba:	fd 01       	movw	r30, r26
+ 2bc:	0d c0       	rjmp	.+26     	; 0x2d8 <__udivmodsi4_ep>
 
-000002b8 <__udivmodsi4>:
- 2b8:	a1 e2       	ldi	r26, 0x21	; 33
- 2ba:	1a 2e       	mov	r1, r26
- 2bc:	aa 1b       	sub	r26, r26
- 2be:	bb 1b       	sub	r27, r27
- 2c0:	fd 01       	movw	r30, r26
- 2c2:	0d c0       	rjmp	.+26     	; 0x2de <__udivmodsi4_ep>
+000002be <__udivmodsi4_loop>:
+ 2be:	aa 1f       	adc	r26, r26
+ 2c0:	bb 1f       	adc	r27, r27
+ 2c2:	ee 1f       	adc	r30, r30
+ 2c4:	ff 1f       	adc	r31, r31
+ 2c6:	a2 17       	cp	r26, r18
+ 2c8:	b3 07       	cpc	r27, r19
+ 2ca:	e4 07       	cpc	r30, r20
+ 2cc:	f5 07       	cpc	r31, r21
+ 2ce:	20 f0       	brcs	.+8      	; 0x2d8 <__udivmodsi4_ep>
+ 2d0:	a2 1b       	sub	r26, r18
+ 2d2:	b3 0b       	sbc	r27, r19
+ 2d4:	e4 0b       	sbc	r30, r20
+ 2d6:	f5 0b       	sbc	r31, r21
 
-000002c4 <__udivmodsi4_loop>:
- 2c4:	aa 1f       	adc	r26, r26
- 2c6:	bb 1f       	adc	r27, r27
- 2c8:	ee 1f       	adc	r30, r30
- 2ca:	ff 1f       	adc	r31, r31
- 2cc:	a2 17       	cp	r26, r18
- 2ce:	b3 07       	cpc	r27, r19
- 2d0:	e4 07       	cpc	r30, r20
- 2d2:	f5 07       	cpc	r31, r21
- 2d4:	20 f0       	brcs	.+8      	; 0x2de <__udivmodsi4_ep>
- 2d6:	a2 1b       	sub	r26, r18
- 2d8:	b3 0b       	sbc	r27, r19
- 2da:	e4 0b       	sbc	r30, r20
- 2dc:	f5 0b       	sbc	r31, r21
+000002d8 <__udivmodsi4_ep>:
+ 2d8:	66 1f       	adc	r22, r22
+ 2da:	77 1f       	adc	r23, r23
+ 2dc:	88 1f       	adc	r24, r24
+ 2de:	99 1f       	adc	r25, r25
+ 2e0:	1a 94       	dec	r1
+ 2e2:	69 f7       	brne	.-38     	; 0x2be <__udivmodsi4_loop>
+ 2e4:	60 95       	com	r22
+ 2e6:	70 95       	com	r23
+ 2e8:	80 95       	com	r24
+ 2ea:	90 95       	com	r25
+ 2ec:	9b 01       	movw	r18, r22
+ 2ee:	ac 01       	movw	r20, r24
+ 2f0:	bd 01       	movw	r22, r26
+ 2f2:	cf 01       	movw	r24, r30
+ 2f4:	08 95       	ret
 
-000002de <__udivmodsi4_ep>:
- 2de:	66 1f       	adc	r22, r22
- 2e0:	77 1f       	adc	r23, r23
- 2e2:	88 1f       	adc	r24, r24
- 2e4:	99 1f       	adc	r25, r25
- 2e6:	1a 94       	dec	r1
- 2e8:	69 f7       	brne	.-38     	; 0x2c4 <__udivmodsi4_loop>
- 2ea:	60 95       	com	r22
- 2ec:	70 95       	com	r23
- 2ee:	80 95       	com	r24
- 2f0:	90 95       	com	r25
- 2f2:	9b 01       	movw	r18, r22
- 2f4:	ac 01       	movw	r20, r24
- 2f6:	bd 01       	movw	r22, r26
- 2f8:	cf 01       	movw	r24, r30
- 2fa:	08 95       	ret
+000002f6 <__umulhisi3>:
+ 2f6:	a2 9f       	mul	r26, r18
+ 2f8:	b0 01       	movw	r22, r0
+ 2fa:	b3 9f       	mul	r27, r19
+ 2fc:	c0 01       	movw	r24, r0
+ 2fe:	a3 9f       	mul	r26, r19
+ 300:	70 0d       	add	r23, r0
+ 302:	81 1d       	adc	r24, r1
+ 304:	11 24       	eor	r1, r1
+ 306:	91 1d       	adc	r25, r1
+ 308:	b2 9f       	mul	r27, r18
+ 30a:	70 0d       	add	r23, r0
+ 30c:	81 1d       	adc	r24, r1
+ 30e:	11 24       	eor	r1, r1
+ 310:	91 1d       	adc	r25, r1
+ 312:	08 95       	ret
 
-000002fc <__umulhisi3>:
- 2fc:	a2 9f       	mul	r26, r18
- 2fe:	b0 01       	movw	r22, r0
- 300:	b3 9f       	mul	r27, r19
- 302:	c0 01       	movw	r24, r0
- 304:	a3 9f       	mul	r26, r19
- 306:	70 0d       	add	r23, r0
- 308:	81 1d       	adc	r24, r1
- 30a:	11 24       	eor	r1, r1
- 30c:	91 1d       	adc	r25, r1
- 30e:	b2 9f       	mul	r27, r18
- 310:	70 0d       	add	r23, r0
- 312:	81 1d       	adc	r24, r1
- 314:	11 24       	eor	r1, r1
- 316:	91 1d       	adc	r25, r1
- 318:	08 95       	ret
+00000314 <__udivmodhi4>:
+ 314:	aa 1b       	sub	r26, r26
+ 316:	bb 1b       	sub	r27, r27
+ 318:	51 e1       	ldi	r21, 0x11	; 17
+ 31a:	07 c0       	rjmp	.+14     	; 0x32a <__udivmodhi4_ep>
 
-0000031a <__udivmodhi4>:
- 31a:	aa 1b       	sub	r26, r26
- 31c:	bb 1b       	sub	r27, r27
- 31e:	51 e1       	ldi	r21, 0x11	; 17
- 320:	07 c0       	rjmp	.+14     	; 0x330 <__udivmodhi4_ep>
+0000031c <__udivmodhi4_loop>:
+ 31c:	aa 1f       	adc	r26, r26
+ 31e:	bb 1f       	adc	r27, r27
+ 320:	a6 17       	cp	r26, r22
+ 322:	b7 07       	cpc	r27, r23
+ 324:	10 f0       	brcs	.+4      	; 0x32a <__udivmodhi4_ep>
+ 326:	a6 1b       	sub	r26, r22
+ 328:	b7 0b       	sbc	r27, r23
 
-00000322 <__udivmodhi4_loop>:
- 322:	aa 1f       	adc	r26, r26
- 324:	bb 1f       	adc	r27, r27
- 326:	a6 17       	cp	r26, r22
- 328:	b7 07       	cpc	r27, r23
- 32a:	10 f0       	brcs	.+4      	; 0x330 <__udivmodhi4_ep>
- 32c:	a6 1b       	sub	r26, r22
- 32e:	b7 0b       	sbc	r27, r23
+0000032a <__udivmodhi4_ep>:
+ 32a:	88 1f       	adc	r24, r24
+ 32c:	99 1f       	adc	r25, r25
+ 32e:	5a 95       	dec	r21
+ 330:	a9 f7       	brne	.-22     	; 0x31c <__udivmodhi4_loop>
+ 332:	80 95       	com	r24
+ 334:	90 95       	com	r25
+ 336:	bc 01       	movw	r22, r24
+ 338:	cd 01       	movw	r24, r26
+ 33a:	08 95       	ret
 
-00000330 <__udivmodhi4_ep>:
- 330:	88 1f       	adc	r24, r24
- 332:	99 1f       	adc	r25, r25
- 334:	5a 95       	dec	r21
- 336:	a9 f7       	brne	.-22     	; 0x322 <__udivmodhi4_loop>
- 338:	80 95       	com	r24
- 33a:	90 95       	com	r25
- 33c:	bc 01       	movw	r22, r24
- 33e:	cd 01       	movw	r24, r26
- 340:	08 95       	ret
+0000033c <_exit>:
+ 33c:	f8 94       	cli
 
-00000342 <_exit>:
- 342:	f8 94       	cli
-
-00000344 <__stop_program>:
- 344:	ff cf       	rjmp	.-2      	; 0x344 <__stop_program>
+0000033e <__stop_program>:
+ 33e:	ff cf       	rjmp	.-2      	; 0x33e <__stop_program>
